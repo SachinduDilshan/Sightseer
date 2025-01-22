@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../../assets/sightseerlogo.png';
+import logo from '../../../assets/sightseerlogo.png';
 
 export const Logo = () => (
   <div className="mb-6 text-center">

@@ -1,6 +1,6 @@
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, FacebookAuthProvider } from 'firebase/auth';
 import { ref, set } from 'firebase/database';
-import { database } from '../../firebasefront';
+import { database } from '../../../firebasefront';
 
 export class UserModel {
   constructor() {

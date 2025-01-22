@@ -1,7 +1,7 @@
 import React from 'react';
 import { Eye, EyeOff, Lock, Mail } from 'lucide-react';
-import fblogo from '../../assets/Facebook_Logo_2023.png';
-import glogo from '../../assets/google.png';
+import fblogo from '../../../assets/Facebook_Logo_2023.png';
+import glogo from '../../../assets/google.png';
 import { Logo } from './Logo';
 
 export const LoginForm = ({
