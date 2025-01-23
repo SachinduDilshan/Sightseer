@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Menu, Search, User } from 'lucide-react';
 import Logo from '../../../assets/sightseerlogo.png';
 import '../../styles/Home.css'
+import Ella from '../../../assets/ella.jpg';
 
 const HomePage = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -61,7 +62,7 @@ const HomePage = () => {
         {/* Hero Section */}
         <section className="md:col-span-7 lg:col-span-8 relative h-48 md:h-96 mt-4 md:mt-8">
           <img
-            src="/api/placeholder/800/400"
+            src={Ella}
             alt="Sri Lanka Landscape"
             className="w-full h-full object-cover rounded-2xl"
           />
@@ -79,7 +80,7 @@ const HomePage = () => {
         </section>
 
         {/* Sidebar for Desktop */}
-        <aside className={`hidden md:block md:col-span-5 lg:col-span-4 mt-8 ${isDarkMode ? 'bg-gray-800' : 'bg-teal-50'}`}>
+        <aside className={`hidden md:block md:col-span-5 rounded-2xl lg:col-span-4 mt-8 ${isDarkMode ? 'bg-gray-800' : 'bg-teal-50'}`}>
           <div className="p-6 rounded-2xl">
             <h2 className="text-2xl font-semibold mb-4 text-teal-600">Plan Your Perfect Trip</h2>
 
