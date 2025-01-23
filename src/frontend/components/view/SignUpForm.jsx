@@ -18,10 +18,10 @@ export const SignUpForm = ({
   };
 
   return (
-    <div className="w-full max-w-md mx-auto p-6 bg-white rounded-lg">
+    <div className="w-full max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-lg md:p-8 lg:p-10">
       <Logo />
-      <h1 className="text-2xl font-bold mb-2 text-center">Sign Up</h1>
-      <p className="text-gray-600 text-center mb-6">
+      <h1 className="text-2xl font-bold mb-2 text-center lg:text-3xl">Sign Up</h1>
+      <p className="text-gray-600 text-center mb-6 lg:text-lg">
         Join us and start your journey to unlock personalized trip planning, AI-powered recommendations, and seamless travel experiences!
       </p>
 
@@ -29,16 +29,17 @@ export const SignUpForm = ({
 
       <form className="space-y-4" onSubmit={handleEmailSignUp}>
         {/* Name Fields */}
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           <div className="relative">
             <input
               type="text"
               name="firstName"
               placeholder="First Name"
-              className="w-full p-3 pl-10 border rounded-lg bg-gray-50"
+              className="w-full p-3 pl-10 border rounded-lg bg-gray-50 focus:ring-2 focus:ring-emerald-500"
               value={formData.firstName}
               onChange={handleInputChange}
-              required />
+              required
+            />
             <User className="w-5 h-5 absolute left-3 top-3.5 text-gray-400" />
           </div>
           <div className="relative">
@@ -46,10 +47,11 @@ export const SignUpForm = ({
               type="text"
               name="lastName"
               placeholder="Last Name"
-              className="w-full p-3 pl-10 border rounded-lg bg-gray-50"
+              className="w-full p-3 pl-10 border rounded-lg bg-gray-50 focus:ring-2 focus:ring-emerald-500"
               value={formData.lastName}
               onChange={handleInputChange}
-              required />
+              required
+            />
             <User className="w-5 h-5 absolute left-3 top-3.5 text-gray-400" />
           </div>
         </div>
@@ -60,10 +62,11 @@ export const SignUpForm = ({
             type="email"
             name="email"
             placeholder="Email Address"
-            className="w-full p-3 pl-10 border rounded-lg bg-gray-50"
+            className="w-full p-3 pl-10 border rounded-lg bg-gray-50 focus:ring-2 focus:ring-emerald-500"
             value={formData.email}
             onChange={handleInputChange}
-            required />
+            required
+          />
           <Mail className="w-5 h-5 absolute left-3 top-3.5 text-gray-400" />
         </div>
 
@@ -72,10 +75,11 @@ export const SignUpForm = ({
             type="tel"
             name="phone"
             placeholder="Phone Number"
-            className="w-full p-3 pl-10 border rounded-lg bg-gray-50"
+            className="w-full p-3 pl-10 border rounded-lg bg-gray-50 focus:ring-2 focus:ring-emerald-500"
             value={formData.phone}
             onChange={handleInputChange}
-            required />
+            required
+          />
           <Phone className="w-5 h-5 absolute left-3 top-3.5 text-gray-400" />
         </div>
 
@@ -83,10 +87,11 @@ export const SignUpForm = ({
           <input
             type="date"
             name="birthDate"
-            className="w-full p-3 pl-10 border rounded-lg bg-gray-50"
+            className="w-full p-3 pl-10 border rounded-lg bg-gray-50 focus:ring-2 focus:ring-emerald-500"
             value={formData.birthDate}
             onChange={handleInputChange}
-            required />
+            required
+          />
           <Calendar className="w-5 h-5 absolute left-3 top-3.5 text-gray-400" />
         </div>
 
@@ -98,7 +103,8 @@ export const SignUpForm = ({
             onChange={handleCountryChange}
             className="w-full"
             isSearchable
-            required />
+            required
+          />
         </div>
 
         {/* Password Fields */}
@@ -107,10 +113,11 @@ export const SignUpForm = ({
             type="password"
             name="password"
             placeholder="Password"
-            className="w-full p-3 pl-10 border rounded-lg bg-gray-50"
+            className="w-full p-3 pl-10 border rounded-lg bg-gray-50 focus:ring-2 focus:ring-emerald-500"
             value={formData.password}
             onChange={handleInputChange}
-            required />
+            required
+          />
           <Lock className="w-5 h-5 absolute left-3 top-3.5 text-gray-400" />
         </div>
 
@@ -119,16 +126,17 @@ export const SignUpForm = ({
             type="password"
             name="confirmPassword"
             placeholder="Confirm Password"
-            className="w-full p-3 pl-10 border rounded-lg bg-gray-50"
+            className="w-full p-3 pl-10 border rounded-lg bg-gray-50 focus:ring-2 focus:ring-emerald-500"
             value={formData.confirmPassword}
             onChange={handleInputChange}
-            required />
+            required
+          />
           <Lock className="w-5 h-5 absolute left-3 top-3.5 text-gray-400" />
         </div>
 
         {/* Terms Checkbox */}
         <div className="flex items-start gap-2">
-          <input type="checkbox" className="mt-1" required />
+          <input type="checkbox" className="mt-1 focus:ring-emerald-500" required />
           <label className="text-sm text-gray-600">
             I agree to the{' '}
             <button type="button" className="text-emerald-500">
@@ -140,7 +148,7 @@ export const SignUpForm = ({
         {/* Submit Button */}
         <button
           type="submit"
-          className="w-full p-3 bg-emerald-500 text-white rounded-lg font-medium"
+          className="w-full p-3 bg-emerald-500 text-white rounded-lg font-medium hover:bg-emerald-600 transition"
         >
           Sign Up
         </button>
@@ -151,7 +159,7 @@ export const SignUpForm = ({
         <button
           type="button"
           onClick={() => setIsLogin(true)}
-          className="text-emerald-500 font-medium"
+          className="text-emerald-500 font-medium hover:underline"
         >
           Log in
         </button>
