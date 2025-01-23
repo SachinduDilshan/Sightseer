@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { User, Lock, Mail, Phone, Calendar } from 'lucide-react';
 import { Logo } from '../view/Logo';
 import Select from 'react-select';
@@ -11,19 +11,42 @@ export const SignUpForm = ({
   setIsLogin,
   error,
 }) => {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
   const handleCountryChange = (selectedOption) => {
     handleInputChange({
       target: { name: 'country', value: selectedOption.value },
     });
   };
 
+  // Toggle Dark Mode
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode);
+  };
+
   return (
-    <div className="w-full max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-lg md:p-8 lg:p-10">
+    
+    <div
+      className={`w-full max-w-2xl mx-auto p-6 rounded-lg shadow-lg md:p-8 lg:p-10 ${isDarkMode ? 'bg-gray-800 text-white' : 'bg-white text-gray-800'
+        }`}
+    >
+      <div className="flex justify-end">
+        <button
+          onClick={toggleDarkMode}
+          className="p-2 rounded-full  text-white hover:bg-white"
+        >
+          {isDarkMode ? '🌞' : '🌙'}
+        </button>
+      </div>
       <Logo />
+      {/* Dark Mode Toggle */}
+
       <h1 className="text-2xl font-bold mb-2 text-center lg:text-3xl">Sign Up</h1>
       <p className="text-gray-600 text-center mb-6 lg:text-lg">
         Join us and start your journey to unlock personalized trip planning, AI-powered recommendations, and seamless travel experiences!
       </p>
+
+
 
       {error && <div className="mb-4 text-red-500 text-center">{error}</div>}
 
@@ -35,7 +58,8 @@ export const SignUpForm = ({
               type="text"
               name="firstName"
               placeholder="First Name"
-              className="w-full p-3 pl-10 border rounded-lg bg-gray-50 focus:ring-2 focus:ring-emerald-500"
+              className={`w-full p-3 pl-10 border rounded-lg ${isDarkMode ? 'bg-gray-700 text-white' : 'bg-gray-50'
+                } focus:ring-2 focus:ring-emerald-500`}
               value={formData.firstName}
               onChange={handleInputChange}
               required
@@ -47,7 +71,8 @@ export const SignUpForm = ({
               type="text"
               name="lastName"
               placeholder="Last Name"
-              className="w-full p-3 pl-10 border rounded-lg bg-gray-50 focus:ring-2 focus:ring-emerald-500"
+              className={`w-full p-3 pl-10 border rounded-lg ${isDarkMode ? 'bg-gray-700 text-white' : 'bg-gray-50'
+                } focus:ring-2 focus:ring-emerald-500`}
               value={formData.lastName}
               onChange={handleInputChange}
               required
@@ -62,7 +87,8 @@ export const SignUpForm = ({
             type="email"
             name="email"
             placeholder="Email Address"
-            className="w-full p-3 pl-10 border rounded-lg bg-gray-50 focus:ring-2 focus:ring-emerald-500"
+            className={`w-full p-3 pl-10 border rounded-lg ${isDarkMode ? 'bg-gray-700 text-white' : 'bg-gray-50'
+              } focus:ring-2 focus:ring-emerald-500`}
             value={formData.email}
             onChange={handleInputChange}
             required
@@ -75,7 +101,8 @@ export const SignUpForm = ({
             type="tel"
             name="phone"
             placeholder="Phone Number"
-            className="w-full p-3 pl-10 border rounded-lg bg-gray-50 focus:ring-2 focus:ring-emerald-500"
+            className={`w-full p-3 pl-10 border rounded-lg ${isDarkMode ? 'bg-gray-700 text-white' : 'bg-gray-50'
+              } focus:ring-2 focus:ring-emerald-500`}
             value={formData.phone}
             onChange={handleInputChange}
             required
@@ -87,7 +114,8 @@ export const SignUpForm = ({
           <input
             type="date"
             name="birthDate"
-            className="w-full p-3 pl-10 border rounded-lg bg-gray-50 focus:ring-2 focus:ring-emerald-500"
+            className={`w-full p-3 pl-10 border rounded-lg ${isDarkMode ? 'bg-gray-700 text-white' : 'bg-gray-50'
+              } focus:ring-2 focus:ring-emerald-500`}
             value={formData.birthDate}
             onChange={handleInputChange}
             required
@@ -113,7 +141,8 @@ export const SignUpForm = ({
             type="password"
             name="password"
             placeholder="Password"
-            className="w-full p-3 pl-10 border rounded-lg bg-gray-50 focus:ring-2 focus:ring-emerald-500"
+            className={`w-full p-3 pl-10 border rounded-lg ${isDarkMode ? 'bg-gray-700 text-white' : 'bg-gray-50'
+              } focus:ring-2 focus:ring-emerald-500`}
             value={formData.password}
             onChange={handleInputChange}
             required
@@ -126,7 +155,8 @@ export const SignUpForm = ({
             type="password"
             name="confirmPassword"
             placeholder="Confirm Password"
-            className="w-full p-3 pl-10 border rounded-lg bg-gray-50 focus:ring-2 focus:ring-emerald-500"
+            className={`w-full p-3 pl-10 border rounded-lg ${isDarkMode ? 'bg-gray-700 text-white' : 'bg-gray-50'
+              } focus:ring-2 focus:ring-emerald-500`}
             value={formData.confirmPassword}
             onChange={handleInputChange}
             required
@@ -148,7 +178,8 @@ export const SignUpForm = ({
         {/* Submit Button */}
         <button
           type="submit"
-          className="w-full p-3 bg-emerald-500 text-white rounded-lg font-medium hover:bg-emerald-600 transition"
+          className={`w-full p-3 rounded-lg font-medium transition ${isDarkMode ? 'bg-emerald-500 text-white hover:bg-emerald-600' : 'bg-emerald-500 text-white hover:bg-emerald-600'
+            }`}
         >
           Sign Up
         </button>

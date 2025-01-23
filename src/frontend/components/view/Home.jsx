@@ -1,13 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Menu, Search, User } from 'lucide-react';
 import Logo from '../../../assets/sightseerlogo.png';
 import '../../styles/Home.css'
 
 const HomePage = () => {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  const toggleDarkMode = () => {
+    setIsDarkMode((prevMode) => !prevMode);
+  };
+
   return (
-    <div className="w-full max-w-7xl mx-auto bg-white min-h-screen relative md:grid md:grid-cols-12">
+    <div className={`w-full max-w-7xl mx-auto min-h-screen relative md:grid md:grid-cols-12 ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-white text-gray-900'}`}>
       {/* Mobile & Desktop Header */}
-      <header className="md:col-span-12 p-4 bg-white shadow-sm">
+      <header className={`md:col-span-12 p-4 shadow-sm ${isDarkMode ? 'bg-gray-800' : 'bg-white'}`}>
         <nav className="flex items-center justify-between mb-4 max-w-6xl mx-auto">
           <div className="flex items-center gap-4">
             <Menu className="w-6 h-6 md:hidden" />
@@ -16,17 +22,22 @@ const HomePage = () => {
           <div className="flex items-center gap-4">
             <Search className="w-6 h-6 md:hidden" />
             <User className="w-6 h-6" />
+            <button 
+              className={`w-6 h-6 ${isDarkMode ? 'text-white' : 'text-gray-800'}`} 
+              onClick={toggleDarkMode}>
+              {isDarkMode ? '🌙' : '🌞'}
+            </button>
           </div>
         </nav>
 
         {/* Scrollable Tab Menu */}
-        <div className="overflow-x-auto scrollbar-hide mb-4 max-w-6xl mx-auto">
+        <div className={`overflow-x-auto scrollbar-hide mb-4 max-w-6xl mx-auto ${isDarkMode ? 'text-white' : ''}`}>
           <div className="flex space-x-6 min-w-max px-1 md:justify-center">
             {['Destinations', 'Hotels', 'Restaurants', 'Activities', 'Travel Agents', 'Vacation'].map((tab) => (
               <a
                 key={tab}
                 href="#"
-                className="text-gray-900 whitespace-nowrap hover:text-teal-500 transition-colors"
+                className="whitespace-nowrap hover:text-teal-500 transition-colors"
               >
                 {tab}
               </a>
@@ -39,7 +50,7 @@ const HomePage = () => {
           <input
             type="text"
             placeholder="Search anything here..."
-            className="w-full p-3 pl-4 pr-10 border rounded-full bg-gray-50 md:p-4"
+            className={`w-full p-3 pl-4 pr-10 border rounded-full ${isDarkMode ? 'bg-gray-700 text-white' : 'bg-gray-50 text-gray-900'} md:p-4`}
           />
           <Search className="absolute right-4 top-3.5 w-5 h-5 text-gray-400 md:top-4" />
         </div>
@@ -68,8 +79,8 @@ const HomePage = () => {
         </section>
 
         {/* Sidebar for Desktop */}
-        <aside className="hidden md:block md:col-span-5 lg:col-span-4 mt-8">
-          <div className="bg-teal-50 p-6 rounded-2xl">
+        <aside className={`hidden md:block md:col-span-5 lg:col-span-4 mt-8 ${isDarkMode ? 'bg-gray-800' : 'bg-teal-50'}`}>
+          <div className="p-6 rounded-2xl">
             <h2 className="text-2xl font-semibold mb-4 text-teal-600">Plan Your Perfect Trip</h2>
 
             <div className="mt-6 space-y-4">
@@ -117,7 +128,7 @@ const HomePage = () => {
         </section>
 
         {/* Newsletter Section */}
-        <section className="col-span-12 bg-teal-500 text-white p-6 mt-8 rounded-2xl md:flex md:items-center md:justify-between">
+        <section className={`col-span-12 ${isDarkMode ? 'bg-gray-800' : 'bg-teal-500'} text-white p-6 mt-8 rounded-2xl md:flex md:items-center md:justify-between`}>
           <div className="md:w-1/2">
             <h2 className="text-xl md:text-2xl font-semibold mb-4">Get Travel Tips</h2>
             <p className="hidden md:block text-teal-100 mb-4">
@@ -129,7 +140,7 @@ const HomePage = () => {
               <input
                 type="email"
                 placeholder="Enter your email.."
-                className="flex-1 p-3 rounded-lg bg-teal-400/50 text-white placeholder-teal-100 border border-teal-400/30"
+                className={`flex-1 p-3 rounded-lg ${isDarkMode ? 'bg-gray-700' : 'bg-teal-400/50'} text-white placeholder-teal-100 border border-teal-400/30`}
               />
               <button className="bg-white text-teal-500 px-6 py-3 rounded-lg font-medium hover:bg-teal-50">
                 Subscribe
@@ -140,7 +151,7 @@ const HomePage = () => {
       </main>
 
       {/* Footer */}
-      <footer className="col-span-12 bg-teal-500 text-white px-6 pt-8 pb-4 mt-8">
+      <footer className={`col-span-12 ${isDarkMode ? 'bg-gray-800' : 'bg-teal-500'} text-white px-6 pt-8 pb-4 mt-8`}>
         <div className="max-w-6xl mx-auto grid md:grid-cols-4 gap-8">
           <div>
             <h3 className="font-semibold mb-4">Company</h3>
@@ -186,8 +197,9 @@ const HomePage = () => {
         <div className="max-w-6xl mx-auto mt-8 text-center text-sm text-teal-100">
           <p>© 2025 Sightseer 2425049. All rights reserved</p>
           <div className="mt-2 space-x-4">
-            <a href="#" className="text-teal-100 hover:text-white">Privacy</a>
-            <a href="#" className="text-teal-100 hover:text-white">Cookies</a>
+            <a href="#" className="hover:text-white">About</a>
+            <a href="#" className="hover:text-white">Careers</a>
+            <a href="#" className="hover:text-white">Legal</a>
           </div>
         </div>
       </footer>
