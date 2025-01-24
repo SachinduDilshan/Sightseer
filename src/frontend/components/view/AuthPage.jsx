@@ -34,7 +34,7 @@ const AuthPage = () => {
     setError('');
     try {
       await authController.handleEmailSignIn(formData.email, formData.password);
-      navigate('/home'); // Redirect to dashboard after successful login
+      navigate('/home'); 
     } catch (error) {
       setError("Oops... Login failed. Check your email and password again");
     }
@@ -45,9 +45,9 @@ const AuthPage = () => {
     setError('');
     try {
       await authController.handleEmailSignUp(formData);
-      setIsLogin(true); // Switch to login form
+      setIsLogin(true); 
       setError('Registration successful! Please login with your new account.');
-      // Clear the form data
+      
       setFormData({
         email: '',
         password: '',
@@ -66,7 +66,7 @@ const AuthPage = () => {
   const handleSocialSignIn = async (provider) => {
     try {
       await authController.handleSocialSignIn(provider);
-      navigate('/dashboard'); // Redirect to dashboard after successful social login
+      navigate('/dashboard'); 
     } catch (error) {
       setError(`Error! Failed signing in with ${provider}`);
     }

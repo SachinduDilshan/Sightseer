@@ -1,0 +1,29 @@
+/* Default light mode styles */
+body {
+    background-color: #f0f0f0; /* Light background */
+    color: #000; /* Text color */
+  }
+  
+  .dark-mode {
+    background-color: #121212; /* Dark background */
+    color: #f0f0f0; /* Light text */
+  }
+  
+  .login-container.dark {
+    background-color: #1c1c1c; /* Dark container background */
+    color: #f0f0f0; /* Adjust container text */
+  }
+  
+  button.toggle-dark-mode {
+    background-color: #444; /* Button background for dark mode */
+    color: #fff; /* Button text */
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  button.toggle-dark-mode:hover {
+    background-color: #666;
+  }
+  

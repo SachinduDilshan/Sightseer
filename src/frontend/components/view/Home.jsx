@@ -26,7 +26,7 @@ const HomePage = () => {
             <button 
               className={`w-6 h-6 ${isDarkMode ? 'text-white' : 'text-gray-800'}`} 
               onClick={toggleDarkMode}>
-              {isDarkMode ? '🌙' : '🌞'}
+              {isDarkMode ?  '🌞' : '🌙'}
             </button>
           </div>
         </nav>
