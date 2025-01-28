@@ -101,14 +101,6 @@ const HomePage = () => {
           </div>
         </aside>
 
-        {/* Plan Trip Button for Mobile */}
-        <div className="flex justify-center -mt-6 relative z-10 md:hidden">
-          <button className="bg-teal-400 text-white px-8 py-3 rounded-lg flex items-center gap-2 shadow-lg">
-            <span className="text-lg">📋</span>
-            Plan My Trip
-          </button>
-        </div>
-
         {/* Trending Destinations */}
         <section className="col-span-12 mt-6 md:mt-8">
           <h2 className="text-xl md:text-2xl font-semibold mb-4 flex items-center">
