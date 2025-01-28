@@ -51,8 +51,8 @@ const HomePage = () => {
             <button className="text-gray-700 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400">
               <User className="h-6 w-6" />
             </button>
-            <button className="md:hidden">
-              <Menu className="h-6 w-6 text-gray-700 dark:text-gray-300" />
+            <button className="text-gray-700 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400" >
+              <Menu className="h-6 w-6" />
             </button>
           </div>
         </nav>
