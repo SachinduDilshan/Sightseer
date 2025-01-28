@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { Menu, Search, User, Moon, Sun } from 'lucide-react';
 import Logo from '../../../assets/sightseerlogo.png';
 import '../../styles/Home.css';
+import { useNavigate } from 'react-router-dom';
 import Ella from '../../../assets/ella.jpg';
 
 const HomePage = () => {
+  const navigate=useNavigate();
   const [darkMode, setDarkMode] = useState(localStorage.getItem('darkMode') === 'true');
 
   const toggleDarkMode = () => {
@@ -49,7 +51,7 @@ const HomePage = () => {
             </button>
 
             <button className="text-gray-700 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400">
-              <User className="h-6 w-6" />
+              <User className="h-6 w-6" onClick={() => navigate('/')} />
             </button>
             <button className="text-gray-700 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400" >
               <Menu className="h-6 w-6" />
