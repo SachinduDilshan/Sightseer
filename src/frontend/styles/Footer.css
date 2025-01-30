@@ -1,0 +1,21 @@
+.footer {
+    padding: 20px;
+    text-align: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .light-footer {
+    background-color: #f8f9fa;
+    color: #333;
+  }
+  
+  .dark-footer {
+    background-color: #222;
+    color: #fff;
+  }
+  
+  .social-icons .icon {
+    margin: 0 10px;
+    cursor: pointer;
+  }
+  

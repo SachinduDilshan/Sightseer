@@ -4,9 +4,16 @@ import Logo from '../../../assets/sightseerlogo.png';
 import '../../styles/Home.css';
 import { useNavigate } from 'react-router-dom';
 import Ella from '../../../assets/ella.jpg';
+import Jaffna from '../../../assets/Jaffna.jpg';
+import Beach from '../../../assets/beach.jpg';
+import HILL from '../../../assets/HILL.jpg';
+import Sigiriya from '../../../assets/Sigiriya.jpeg';
+import Footer from "./Footer.jsx";
+import { createContext, useContext } from 'react';
+
 
 const HomePage = () => {
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   const [darkMode, setDarkMode] = useState(localStorage.getItem('darkMode') === 'true');
 
   const toggleDarkMode = () => {
@@ -18,6 +25,7 @@ const HomePage = () => {
 
 
   return (
+    <DarkModeContext.Provider value={{ darkMode, toggleDarkMode }}>
     <div className={`min-h-screen ${darkMode ? 'dark' : ''}`}>
       <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-200">
         {/* Navigation */}
@@ -84,7 +92,7 @@ const HomePage = () => {
             </h1>
             <p className="text-teal-400 mb-4">✨AI-Powered Travel Planning</p>
             <button className="bg-teal-500 text-white px-6 py-2 rounded-md flex items-center gap-2 hover:bg-teal-600">
-              <span className="text-lg">Plan My Trip</span>
+              <span className="text-lg">📝 Plan My Trip</span>
             </button>
           </div>
         </div>
@@ -114,7 +122,7 @@ const HomePage = () => {
           <div className="grid md:grid-cols-2 gap-4">
             <div className="relative rounded-lg overflow-hidden h-48">
               <img
-                src={Ella}
+                src={Jaffna}
                 alt="Jaffna & North"
                 className="w-full h-full object-cover"
               />
@@ -124,7 +132,7 @@ const HomePage = () => {
             </div>
             <div className="relative rounded-lg overflow-hidden h-48">
               <img
-                src={Ella}
+                src={HILL}
                 alt="Ella and Hill Country"
                 className="w-full h-full object-cover"
               />
@@ -134,7 +142,7 @@ const HomePage = () => {
             </div>
             <div className="relative rounded-lg overflow-hidden h-48">
               <img
-                src={Ella}
+                src={Sigiriya}
                 alt="Sigiriya"
                 className="w-full h-full object-cover"
               />
@@ -144,7 +152,7 @@ const HomePage = () => {
             </div>
             <div className="relative rounded-lg overflow-hidden h-48">
               <img
-                src={Ella}
+                src={Beach}
                 alt="Down South"
                 className="w-full h-full object-cover"
               />
@@ -158,67 +166,15 @@ const HomePage = () => {
           </button>
         </div>
 
-        {/* Newsletter & Footer */}
-        <div className="bg-teal-600 dark:bg-teal-800 text-white px-4 py-12">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-2xl font-bold mb-6">Get Travel Tips</h2>
-            <div className="flex gap-2 max-w-md">
-              <input
-                type="email"
-                placeholder="Enter your email..."
-                className="flex-1 px-4 py-2 rounded-md text-gray-800 dark:text-white dark:bg-gray-700 focus:outline-none dark:placeholder-gray-400"
-              />
-              <button className="bg-white dark:bg-gray-200 text-teal-600 px-4 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-300">
-                Subscribe
-              </button>
-            </div>
+         {/* Footer */}
+         <Footer/> 
 
-            <div className="grid md:grid-cols-2 gap-12 mt-12">
-              <div>
-                <h3 className="font-semibold mb-4">Company</h3>
-                <div className="space-y-2">
-                  <button className="block hover:underline">About us</button>
-                  <button className="block hover:underline">Blog</button>
-                  <button className="block hover:underline">Careers</button>
-                </div>
-              </div>
-              <div>
-                <h3 className="font-semibold mb-4">Support</h3>
-                <div className="space-y-2">
-                  <button className="block hover:underline">Contact us</button>
-                  <button className="block hover:underline">How this works</button>
-                  <button className="block hover:underline">Terms and Conditions</button>
-                  <button className="block hover:underline">Safety</button>
-                </div>
-              </div>
-            </div>
-
-            <div className="flex gap-4 mt-8">
-              <button className="hover:text-gray-200">
-                <span className="text-2xl">👨‍👩‍👦</span>
-              </button>
-              <button className="hover:text-gray-200">
-                <span className="text-2xl">📸</span>
-              </button>
-              <button className="hover:text-gray-200">
-                <span className="text-2xl">📧</span>
-              </button>
-              <button className="hover:text-gray-200">
-                <span className="text-2xl">🐦</span>
-              </button>
-            </div>
-
-            <div className="flex flex-wrap gap-4 mt-8 text-sm">
-              <button className="hover:underline">Privacy</button>
-              <button className="hover:underline">Cookies</button>
-            </div>
-
-            <p className="text-sm mt-4">© 2025 Sochindu Dilshan. All rights reserved</p>
-          </div>
-        </div>
+        
       </div>
     </div>
+     </DarkModeContext.Provider >
   );
 };
 
 export default HomePage;
+export const DarkModeContext = createContext();

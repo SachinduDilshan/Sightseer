@@ -3,11 +3,14 @@ import ReactDOM from 'react-dom/client';
 import './frontend/styles/index.css';
 import App from './frontend/App';
 import reportWebVitals from './reportWebVitals';
+import { DarkModeProvider } from './frontend/components/view/DarkModeContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <DarkModeProvider>
     <App />
+    </DarkModeProvider>
   </React.StrictMode>
 );
 
