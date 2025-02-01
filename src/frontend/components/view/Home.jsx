@@ -10,6 +10,7 @@ import HILL from '../../../assets/HILL.jpg';
 import Sigiriya from '../../../assets/Sigiriya.jpeg';
 import Footer from "./Footer.jsx";
 import { DarkModeContext } from './DarkModeContext';
+import SidebarMenu from './SideBar.jsx';
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -24,6 +25,7 @@ const HomePage = () => {
             <div className="flex items-center gap-2">
               <img src={Logo} alt="Sightseer Logo" className="h-10 w-10" />
               <span className="text-teal-600 dark:text-teal-400 font-semibold">SIGHTSEER</span>
+              <SidebarMenu />
             </div>
 
             <div className="hidden md:flex items-center gap-6">
@@ -50,9 +52,6 @@ const HomePage = () => {
 
             <button className="text-gray-700 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400">
               <User className="h-6 w-6" onClick={() => navigate('/')} />
-            </button>
-            <button className="text-gray-700 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400" >
-              <Menu className="h-6 w-6" />
             </button>
           </div>
         </nav>
