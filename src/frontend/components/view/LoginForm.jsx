@@ -4,7 +4,7 @@ import fblogo from '../../../assets/Facebook_Logo_2023.png';
 import glogo from '../../../assets/google.png';
 import { Logo } from './Logo';
 import { useNavigate } from 'react-router-dom';
-import { DarkModeContext } from './DarkModeContext'; // Adjust the import path as necessary
+import { DarkModeContext } from './DarkModeContext.jsx'; 
 import '../../styles/login.css';
 
 export const LoginForm = ({

@@ -4,7 +4,7 @@ import { Logo } from '../view/Logo';
 import Select from 'react-select';
 import countryOptions from './Countries';
 import { useContext } from 'react';
-import { DarkModeContext } from './Home';
+import { DarkModeContext } from './DarkModeContext';
 
 export const SignUpForm = ({
   formData,
@@ -13,8 +13,7 @@ export const SignUpForm = ({
   setIsLogin,
   error,
 }) => {
-  const darkModeContext = useContext(DarkModeContext);
-  const darkMode = darkModeContext?.darkMode ?? false;
+  const { darkMode } = useContext(DarkModeContext);
 
   const handleCountryChange = (selectedOption) => {
     handleInputChange({
@@ -59,23 +58,24 @@ export const SignUpForm = ({
   };
 
   return (
-    <div
-      className={`w-full max-w-2xl mx-auto p-6 rounded-lg shadow-lg md:p-8 lg:p-10 ${
-        darkMode ? 'bg-gray-800 text-white' : 'bg-white text-gray-800'
-      }`}
-    >
-      <Logo />
+    <div className={`min-h-screen ${darkMode ? 'dark bg-gray-900' : 'bg-gray-100'} py-8`}>
+      <div
+        className={`w-full max-w-2xl mx-auto p-6 rounded-lg shadow-lg md:p-8 lg:p-10 ${
+          darkMode ? 'bg-gray-800 text-white' : 'bg-white text-gray-800'
+        }`}
+      >
+        <Logo />
 
-      <h1 className="text-2xl font-bold mb-2 text-center lg:text-3xl">Sign Up</h1>
-      <p className={`text-center mb-6 lg:text-lg ${
-        darkMode ? 'text-gray-300' : 'text-gray-600'
-      }`}>
-        Join us and start your journey to unlock personalized trip planning, AI-powered recommendations, and seamless travel experiences!
-      </p>
+        <h1 className="text-2xl font-bold mb-2 text-center lg:text-3xl">Sign Up</h1>
+        <p className={`text-center mb-6 lg:text-lg ${
+          darkMode ? 'text-gray-300' : 'text-gray-600'
+        }`}>
+          Join us and start your journey to unlock personalized trip planning, AI-powered recommendations, and seamless travel experiences!
+        </p>
 
-      {error && <div className="mb-4 text-red-500 text-center">{error}</div>}
+        {error && <div className="mb-4 text-red-500 text-center">{error}</div>}
 
-      <form className="space-y-4" onSubmit={handleEmailSignUp}>
+        <form className="space-y-4" onSubmit={handleEmailSignUp}>
         {/* Name Fields */}
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           <div className="relative">
@@ -238,15 +238,16 @@ export const SignUpForm = ({
       </form>
 
       <p className={`text-center mt-4 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-        Already have an account?{' '}
-        <button
-          type="button"
-          onClick={() => setIsLogin(true)}
-          className="text-emerald-500 font-medium hover:underline"
-        >
-          Log in
-        </button>
-      </p>
+          Already have an account?{' '}
+          <button
+            type="button"
+            onClick={() => setIsLogin(true)}
+            className="text-emerald-500 font-medium hover:underline"
+          >
+            Log in
+          </button>
+        </p>
+      </div>
     </div>
   );
 };

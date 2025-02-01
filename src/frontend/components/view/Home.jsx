@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import { Menu, Search, User, Moon, Sun } from 'lucide-react';
 import Logo from '../../../assets/sightseerlogo.png';
 import '../../styles/Home.css';
@@ -9,23 +9,13 @@ import Beach from '../../../assets/beach.jpg';
 import HILL from '../../../assets/HILL.jpg';
 import Sigiriya from '../../../assets/Sigiriya.jpeg';
 import Footer from "./Footer.jsx";
-import { createContext, useContext } from 'react';
-
+import { DarkModeContext } from './DarkModeContext';
 
 const HomePage = () => {
   const navigate = useNavigate();
-  const [darkMode, setDarkMode] = useState(localStorage.getItem('darkMode') === 'true');
-
-  const toggleDarkMode = () => {
-    const newMode = !darkMode;
-    setDarkMode(newMode);
-    localStorage.setItem('darkMode', newMode);
-    document.documentElement.classList.toggle('dark', newMode);
-  };
-
+  const { darkMode, toggleDarkMode } = useContext(DarkModeContext);
 
   return (
-    <DarkModeContext.Provider value={{ darkMode, toggleDarkMode }}>
     <div className={`min-h-screen ${darkMode ? 'dark' : ''}`}>
       <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-200">
         {/* Navigation */}
@@ -166,15 +156,11 @@ const HomePage = () => {
           </button>
         </div>
 
-         {/* Footer */}
-         <Footer/> 
-
-        
+        {/* Footer */}
+        <Footer />
       </div>
     </div>
-     </DarkModeContext.Provider >
   );
 };
 
 export default HomePage;
-export const DarkModeContext = createContext();
