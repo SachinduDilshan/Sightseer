@@ -51,7 +51,7 @@ const SidebarMenu = () => {
         <Menu size={24} />
       </button>
 
-      {/* Sidebar Overlay */}
+      {/* Sidebar Overlay bar */}
       {isOpen && (
         <div
           className="fixed inset-0 bg-black bg-opacity-50 z-40"
