@@ -1,47 +1,43 @@
-import React, { useState, createContext, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Menu, X, Settings, LogOut, History, Heart, Image, Calendar, MapPin } from 'lucide-react';
-
-// Create the dark mode context with default values
-export const DarkModeContext = createContext({
-  darkMode: false,
-  toggleDarkMode: () => {},
-});
-
-// Create a provider component
-export const DarkModeProvider = ({ children }) => {
-  const [darkMode, setDarkMode] = useState(false);
-
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-  };
-
-  return (
-    <DarkModeContext.Provider value={{ darkMode, toggleDarkMode }}>
-      {children}
-    </DarkModeContext.Provider>
-  );
-};
-
-// Custom hook for using dark mode
-const useDarkMode = () => {
-  const context = useContext(DarkModeContext);
-  if (context === undefined) {
-    return { darkMode: false, toggleDarkMode: () => {} };
-  }
-  return context;
-};
+import { auth, database } from '../../../firebasefront'; // Adjust import path
+import { ref, onValue } from 'firebase/database';
+import { signOut } from 'firebase/auth';
+import { DarkModeContext } from './DarkModeContext'; // Import from your existing context
 
 const SidebarMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { darkMode } = useDarkMode();
+  const [userData, setUserData] = useState(null);
+  const { darkMode } = useContext(DarkModeContext);
+
+  useEffect(() => {
+    const user = auth.currentUser;
+    if (user) {
+      const userRef = ref(database, `users/${user.uid}`);
+      const unsubscribe = onValue(userRef, (snapshot) => {
+        const data = snapshot.val();
+        setUserData(data);
+      });
+
+      return () => unsubscribe();
+    }
+  }, []);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      // Redirect to login page or home page
+    } catch (error) {
+      console.error('Logout error:', error);
+    }
+  };
+
   return (
     <div className="relative">
-      {/* Menu Button */}
       <button
         onClick={toggleMenu}
         className={`p-2 rounded-lg ${
@@ -51,7 +47,6 @@ const SidebarMenu = () => {
         <Menu size={24} />
       </button>
 
-      {/* Sidebar Overlay bar */}
       {isOpen && (
         <div
           className="fixed inset-0 bg-black bg-opacity-50 z-40"
@@ -59,7 +54,6 @@ const SidebarMenu = () => {
         />
       )}
 
-      {/* Sidebar Menu */}
       <div
         className={`fixed top-0 left-0 h-full w-64 z-50 transform transition-transform duration-300 ease-in-out ${
           isOpen ? 'translate-x-0' : '-translate-x-full'
@@ -67,27 +61,29 @@ const SidebarMenu = () => {
           darkMode ? 'bg-gray-900 text-white' : 'bg-white text-gray-800'
         }`}
       >
-        {/* Header */}
         <div className="flex items-center justify-between p-4 border-b border-gray-600">
           <button onClick={toggleMenu} className="p-2">
             <X size={24} />
           </button>
         </div>
 
-        {/* User Profile */}
         <div className="p-4 border-b border-gray-600">
           <div className="flex items-center space-x-3">
             <div className="w-12 h-12 rounded-full bg-gray-500" />
             <div>
-              <h3 className="font-medium">User Name</h3>
+              <h3 className="font-medium">
+                {userData 
+                  ? `${userData.firstName} ${userData.lastName}` 
+                  : 'Loading...'
+                }
+              </h3>
               <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
-                Location
+                {userData?.country || 'Location'}
               </p>
             </div>
           </div>
         </div>
 
-        {/* Menu Items */}
         <nav className="p-4">
           <ul className="space-y-2">
             {[
@@ -114,9 +110,9 @@ const SidebarMenu = () => {
           </ul>
         </nav>
 
-        {/* Logout Button */}
         <div className="absolute bottom-0 w-full p-4 border-t border-gray-600">
           <button
+            onClick={handleLogout}
             className={`w-full flex items-center space-x-2 p-2 rounded-lg ${
               darkMode ? 'text-red-400 hover:bg-gray-800' : 'text-red-600 hover:bg-gray-100'
             }`}

@@ -33,6 +33,8 @@ const HomePage = () => {
               <button className="text-gray-700 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400">Hotels</button>
               <button className="text-gray-700 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400">Restaurants</button>
               <button className="text-gray-700 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400">Activities</button>
+              <button className="text-gray-700 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400">Travel Agents</button>
+              <button className="text-gray-700 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400">Vacation Rentals</button>
             </div>
           </div>
 
@@ -113,7 +115,7 @@ const HomePage = () => {
               <img
                 src={Jaffna}
                 alt="Jaffna & North"
-                className="w-full h-full object-cover"
+                className= "w-full h-full object-cover"
               />
               <div className="absolute bottom-0 left-0 p-4 text-white">
                 <h3 className="text-xl font-semibold">Jaffna & North</h3>
