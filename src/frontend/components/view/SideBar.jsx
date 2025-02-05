@@ -39,7 +39,7 @@ const SidebarMenu = () => {
   };
 
   const handleLoginRedirect = () => {
-    navigate('/login'); // Redirect to login page when user clicks on "Login"
+    navigate('/login'); // Redirect to login page when user clicks on 'Login'
   };
 
   return (
@@ -59,8 +59,8 @@ const SidebarMenu = () => {
           <div className="flex items-center space-x-3">
             <div className="w-12 h-12 rounded-full bg-gray-500" />
             <div>
-              {/* Display 'Login' if no user is logged in, otherwise show the user's name */}
-              <h3 className="font-medium">
+              {/* Display 'Login' text when no user is logged in */}
+              <h3 className="font-medium" onClick={!userData ? handleLoginRedirect : null}>
                 {userData ? `${userData.firstName} ${userData.lastName}` : 'Login'}
               </h3>
               <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
@@ -69,15 +69,6 @@ const SidebarMenu = () => {
             </div>
           </div>
         </div>
-
-        {/* Add a click handler to redirect to login when no user is logged in */}
-        {!userData && (
-          <div className="p-4">
-            <button onClick={handleLoginRedirect} className="w-full text-center p-2 text-blue-500">
-              Login
-            </button>
-          </div>
-        )}
 
         <nav className="p-4">
           <ul className="space-y-2">
