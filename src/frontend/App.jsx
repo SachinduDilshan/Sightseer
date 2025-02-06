@@ -3,6 +3,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 import AuthPage from "./components/view/AuthPage";
 import HomePage from "./components/view/Home";
+//import Contact from "/.components/view/Contac";
 //import DashboardPage from "./views/pages/DashboardPage"; // You'll need to create this
 //import ProtectedRoute from "./components/ProtectedRoute";
 import './styles/App.css';
@@ -15,6 +16,8 @@ function App() {
         <Route path="/auth" element={<AuthPage />} />
 
         <Route path="/home" element={<HomePage />} />
+
+        {/*<Rout path="/contact" elements={<ContacPage/>} />*/}
 
 
         {/* Redirect root to auth page */}
