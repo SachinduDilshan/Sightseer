@@ -1,13 +1,11 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import { User, Lock, Mail, Phone, Calendar } from 'lucide-react';
 import { Logo } from '../view/Logo';
 import Select from 'react-select';
 import countryOptions from './Countries';
-import { useContext } from 'react';
 import { DarkModeContext } from './DarkModeContext';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { useState } from 'react';
 
 export const SignUpForm = ({
   formData,
@@ -17,7 +15,6 @@ export const SignUpForm = ({
   error,
 }) => {
   const { darkMode } = useContext(DarkModeContext);
-
   const [birthDate, setBirthDate] = useState(null);
 
   const handleDateChange = (date) => {
@@ -72,14 +69,12 @@ export const SignUpForm = ({
   return (
     <div className={`min-h-screen ${darkMode ? 'dark bg-gray-900' : 'bg-gray-100'} py-8`}>
       <div
-        className={`w-full max-w-2xl mx-auto p-6 rounded-lg shadow-lg md:p-8 lg:p-10 ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-gray-800'
-          }`}
+        className={`w-full max-w-2xl mx-auto p-6 rounded-lg shadow-lg md:p-8 lg:p-10 ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-gray-800'}`}
       >
         <Logo />
 
         <h1 className="text-2xl font-bold mb-2 text-center lg:text-3xl">Sign Up</h1>
-        <p className={`text-center mb-6 lg:text-lg ${darkMode ? 'text-gray-300' : 'text-gray-600'
-          }`}>
+        <p className={`text-center mb-6 lg:text-lg ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
           Join us and start your journey to unlock personalized trip planning, AI-powered recommendations, and seamless travel experiences!
         </p>
 
@@ -93,28 +88,24 @@ export const SignUpForm = ({
                 type="text"
                 name="firstName"
                 placeholder="First Name"
-                className={`w-full p-3 pl-10 border rounded-lg ${darkMode ? 'bg-gray-700 text-white border-gray-600' : 'bg-gray-50 border-gray-300'
-                  } focus:ring-2 focus:ring-emerald-500`}
+                className={`w-full p-3 pl-10 border rounded-lg ${darkMode ? 'bg-gray-700 text-white border-gray-600' : 'bg-gray-50 border-gray-300'} focus:ring-2 focus:ring-emerald-500`}
                 value={formData.firstName}
                 onChange={handleInputChange}
                 required
               />
-              <User className={`w-5 h-5 absolute left-3 top-3.5 ${darkMode ? 'text-gray-400' : 'text-gray-400'
-                }`} />
+              <User className={`w-5 h-5 absolute left-3 top-3.5 ${darkMode ? 'text-gray-400' : 'text-gray-400'}`} />
             </div>
             <div className="relative">
               <input
                 type="text"
                 name="lastName"
                 placeholder="Last Name"
-                className={`w-full p-3 pl-10 border rounded-lg ${darkMode ? 'bg-gray-700 text-white border-gray-600' : 'bg-gray-50 border-gray-300'
-                  } focus:ring-2 focus:ring-emerald-500`}
+                className={`w-full p-3 pl-10 border rounded-lg ${darkMode ? 'bg-gray-700 text-white border-gray-600' : 'bg-gray-50 border-gray-300'} focus:ring-2 focus:ring-emerald-500`}
                 value={formData.lastName}
                 onChange={handleInputChange}
                 required
               />
-              <User className={`w-5 h-5 absolute left-3 top-3.5 ${darkMode ? 'text-gray-400' : 'text-gray-400'
-                }`} />
+              <User className={`w-5 h-5 absolute left-3 top-3.5 ${darkMode ? 'text-gray-400' : 'text-gray-400'}`} />
             </div>
           </div>
 
@@ -124,14 +115,12 @@ export const SignUpForm = ({
               type="email"
               name="email"
               placeholder="Email Address"
-              className={`w-full p-3 pl-10 border rounded-lg ${darkMode ? 'bg-gray-700 text-white border-gray-600' : 'bg-gray-50 border-gray-300'
-                } focus:ring-2 focus:ring-emerald-500`}
+              className={`w-full p-3 pl-10 border rounded-lg ${darkMode ? 'bg-gray-700 text-white border-gray-600' : 'bg-gray-50 border-gray-300'} focus:ring-2 focus:ring-emerald-500`}
               value={formData.email}
               onChange={handleInputChange}
               required
             />
-            <Mail className={`w-5 h-5 absolute left-3 top-3.5 ${darkMode ? 'text-gray-400' : 'text-gray-400'
-              }`} />
+            <Mail className={`w-5 h-5 absolute left-3 top-3.5 ${darkMode ? 'text-gray-400' : 'text-gray-400'}`} />
           </div>
 
           {/* Phone */}
@@ -140,32 +129,31 @@ export const SignUpForm = ({
               type="tel"
               name="phone"
               placeholder="Phone Number"
-              className={`w-full p-3 pl-10 border rounded-lg ${darkMode ? 'bg-gray-700 text-white border-gray-600' : 'bg-gray-50 border-gray-300'
-                } focus:ring-2 focus:ring-emerald-500`}
+              className={`w-full p-3 pl-10 border rounded-lg ${darkMode ? 'bg-gray-700 text-white border-gray-600' : 'bg-gray-50 border-gray-300'} focus:ring-2 focus:ring-emerald-500`}
               value={formData.phone}
               onChange={handleInputChange}
               required
             />
-            <Phone className={`w-5 h-5 absolute left-3 top-3.5 ${darkMode ? 'text-gray-400' : 'text-gray-400'
-              }`} />
+            <Phone className={`w-5 h-5 absolute left-3 top-3.5 ${darkMode ? 'text-gray-400' : 'text-gray-400'}`} />
           </div>
 
           {/* Birth Date */}
           <div className="relative">
-        <DatePicker
-          selected={birthDate}
-          onChange={handleDateChange}
-          placeholderText="Date of Birth"
-          className={`w-full p-3 pl-10 border rounded-lg ${
-            darkMode ? 'bg-gray-700 text-white border-gray-600' : 'bg-gray-50 border-gray-300'
-          } focus:ring-2 focus:ring-emerald-500`}
-          dateFormat="dd/MM/yyyy" // Set a date format
-          showYearDropdown // Show the year dropdown
-          scrollableYearDropdown // Make year dropdown scrollable
-          yearDropdownItemNumber={50} // Show a range of 50 years (adjust as needed)
-        />
-        <Calendar className={`w-5 h-5 absolute left-3 top-3.5 ${darkMode ? 'text-gray-400' : 'text-gray-400'}`} />
-      </div>
+            <DatePicker
+              selected={birthDate}
+              onChange={handleDateChange}
+              placeholderText="Date of Birth"
+              className={`w-full p-3 pl-10 border rounded-lg ${
+                darkMode ? 'bg-gray-700 text-white border-gray-600' : 'bg-gray-50 border-gray-300'
+              } focus:ring-2 focus:ring-emerald-500`}
+              dateFormat="dd/MM/yyyy"
+              showYearDropdown
+              scrollableYearDropdown
+              yearDropdownItemNumber={50}
+              required
+            />
+            <Calendar className={`w-5 h-5 absolute left-3 top-3.5 ${darkMode ? 'text-gray-400' : 'text-gray-400'}`} />
+          </div>
 
           {/* Country Dropdown */}
           <div className="relative">
@@ -186,14 +174,12 @@ export const SignUpForm = ({
               type="password"
               name="password"
               placeholder="Password"
-              className={`w-full p-3 pl-10 border rounded-lg ${darkMode ? 'bg-gray-700 text-white border-gray-600' : 'bg-gray-50 border-gray-300'
-                } focus:ring-2 focus:ring-emerald-500`}
+              className={`w-full p-3 pl-10 border rounded-lg ${darkMode ? 'bg-gray-700 text-white border-gray-600' : 'bg-gray-50 border-gray-300'} focus:ring-2 focus:ring-emerald-500`}
               value={formData.password}
               onChange={handleInputChange}
               required
             />
-            <Lock className={`w-5 h-5 absolute left-3 top-3.5 ${darkMode ? 'text-gray-400' : 'text-gray-400'
-              }`} />
+            <Lock className={`w-5 h-5 absolute left-3 top-3.5 ${darkMode ? 'text-gray-400' : 'text-gray-400'}`} />
           </div>
 
           <div className="relative">
@@ -201,14 +187,12 @@ export const SignUpForm = ({
               type="password"
               name="confirmPassword"
               placeholder="Confirm Password"
-              className={`w-full p-3 pl-10 border rounded-lg ${darkMode ? 'bg-gray-700 text-white border-gray-600' : 'bg-gray-50 border-gray-300'
-                } focus:ring-2 focus:ring-emerald-500`}
+              className={`w-full p-3 pl-10 border rounded-lg ${darkMode ? 'bg-gray-700 text-white border-gray-600' : 'bg-gray-50 border-gray-300'} focus:ring-2 focus:ring-emerald-500`}
               value={formData.confirmPassword}
               onChange={handleInputChange}
               required
             />
-            <Lock className={`w-5 h-5 absolute left-3 top-3.5 ${darkMode ? 'text-gray-400' : 'text-gray-400'
-              }`} />
+            <Lock className={`w-5 h-5 absolute left-3 top-3.5 ${darkMode ? 'text-gray-400' : 'text-gray-400'}`} />
           </div>
 
           {/* Terms Checkbox */}

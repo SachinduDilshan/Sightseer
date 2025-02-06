@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Menu, Search, User, Moon, Sun } from 'lucide-react';
+import {Search, User, Moon, Sun } from 'lucide-react';
 import Logo from '../../../assets/sightseerlogo.png';
 import '../../styles/Home.css';
 import { useNavigate } from 'react-router-dom';

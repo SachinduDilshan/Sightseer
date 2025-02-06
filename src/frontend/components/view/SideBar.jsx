@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Menu, X, Settings, LogOut, History, Heart, Image, Calendar, MapPin } from 'lucide-react';
+import { Menu, X, Settings, LogOut, History, Heart, Image, Calendar, MapPin, Contact } from 'lucide-react';
 import { auth, database } from '../../../firebasefront';
 import { ref, onValue } from 'firebase/database';
 import { signOut } from 'firebase/auth';
@@ -72,7 +72,13 @@ const SidebarMenu = () => {
 
         <nav className="p-4">
           <ul className="space-y-2">
-            {[{ icon: <History size={20} />, text: 'Trip history' }, { icon: <Heart size={20} />, text: 'My favorites' }, { icon: <Image size={20} />, text: 'Post photos' }, { icon: <Calendar size={20} />, text: 'Add an event' }, { icon: <MapPin size={20} />, text: 'Add a new place' }, { icon: <Settings size={20} />, text: 'Settings' }].map((item, index) => (
+            {[{ icon: <History size={20} />, text: 'Trip history' },
+            { icon: <Heart size={20} />, text: 'My favorites' },
+            { icon: <Image size={20} />, text: 'Post photos' },
+            { icon: <Calendar size={20} />, text: 'Add an event' },
+            { icon: <MapPin size={20} />, text: 'Add a new place' },
+            { icon: <Contact size={20} />, text: 'Contact Us' },
+            { icon: <Settings size={20} />, text: 'Settings' }].map((item, index) => (
               <li key={index}>
                 <button className={`w-full flex items-center space-x-3 p-2 rounded-lg ${darkMode ? 'hover:bg-gray-800' : 'hover:bg-gray-100'}`}>{item.icon}<span>{item.text}</span></button>
               </li>
