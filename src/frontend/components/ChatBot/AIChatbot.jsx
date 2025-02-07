@@ -75,7 +75,7 @@ const AIChatbot = () => {
                             onChange={(e) => setInputMessage(e.target.value)}
                             onKeyDown={(e) => {
                                 if (e.key === "Enter") {
-                                    e.preventDefault(); // Prevent form submission
+                                    e.preventDefault(); 
                                     handleSendMessage();
                                     setInputMessage('');
                                 }
