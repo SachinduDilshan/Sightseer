@@ -3,6 +3,7 @@ import { Phone, Mail, MessageCircle } from 'lucide-react';
 import { DarkModeContext } from './DarkModeContext';
 import Footer from './Footer';
 import Navbar from './Navbar';
+import AIChatbot from '../ChatBot/AIChatbot';
 
 const ContactPage = () => {
     const { darkMode } = useContext(DarkModeContext);
@@ -92,6 +93,8 @@ const ContactPage = () => {
                     {/* Newsletter Section */}
                     <Footer />
                 </div>
+
+                <AIChatbot />
             </div>
         </div>
     );

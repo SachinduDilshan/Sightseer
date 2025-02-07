@@ -8,6 +8,7 @@ import HILL from '../../../assets/HILL.jpg';
 import Sigiriya from '../../../assets/Sigiriya.jpeg';
 import Footer from "./Footer.jsx";
 import { DarkModeContext } from './DarkModeContext';
+import AIChatbot from '../ChatBot/AIChatbot';
 
 import Navbar from './Navbar.jsx';
 
@@ -111,6 +112,7 @@ const HomePage = () => {
         {/* Footer */}
         <Footer />
       </div>
+      <AIChatbot/>
     </div>
   );
 };
