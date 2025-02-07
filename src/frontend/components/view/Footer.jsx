@@ -1,8 +1,11 @@
 import { FaFacebook, FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "../../styles/Footer.css";
 
 const Footer = () => {
+  const navigate = useNavigate();
+
   return (
     <footer className="bg-teal-600 dark:bg-teal-900 text-white px-6 py-12 transition-colors duration-200">
       <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-8 text-center md:text-left">
@@ -34,7 +37,7 @@ const Footer = () => {
         <div>
           <h3 className="font-semibold mb-4">Support</h3>
           <ul className="space-y-2">
-            <li><a href="#" className="hover:underline">Contact Us</a></li>
+            <li><button onClick={() => navigate('/contact')} className="hover:underline">Contact Us</button></li>
             <li><a href="#" className="hover:underline">How it Works</a></li>
             <li><a href="#" className="hover:underline">Terms & Conditions</a></li>
             <li><a href="#" className="hover:underline">Safety</a></li>
