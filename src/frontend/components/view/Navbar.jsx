@@ -5,6 +5,7 @@ import Logo from '../../../assets/sightseerlogo.png';
 import SidebarMenu from './SideBar.jsx';
 import { DarkModeContext } from './DarkModeContext';
 
+
 const Navbar = () => {
   const navigate = useNavigate();
   const { darkMode, toggleDarkMode } = useContext(DarkModeContext);
@@ -50,11 +51,13 @@ const Navbar = () => {
       {/* Search Bar */}
       <div className="px-4 py-3">
         <div className="relative max-w-2xl mx-auto">
+          
           <input
             type="text"
             placeholder="Search anything here..."
             className="w-full px-4 py-2 border rounded-full focus:outline-none focus:ring-2 focus:ring-teal-500 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:placeholder-gray-400"
           />
+           
           <Search className="absolute right-4 top-2.5 h-5 w-5 text-gray-400" />
         </div>
       </div>
