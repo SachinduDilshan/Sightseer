@@ -138,35 +138,39 @@ export const SignUpForm = ({
           </div>
 
           {/* Birth Date */}
-          <div className="relative">
-            <DatePicker
-              selected={birthDate}
-              onChange={handleDateChange}
-              placeholderText="Date of Birth"
-              className={`w-full p-3 pl-10 border rounded-lg ${
-                darkMode ? 'bg-gray-700 text-white border-gray-600' : 'bg-gray-50 border-gray-300'
-              } focus:ring-2 focus:ring-emerald-500`}
-              dateFormat="dd/MM/yyyy"
-              showYearDropdown
-              scrollableYearDropdown
-              yearDropdownItemNumber={50}
-              required
-            />
-            <Calendar className={`w-5 h-5 absolute left-3 top-3.5 ${darkMode ? 'text-gray-400' : 'text-gray-400'}`} />
+          <div className="flex flex-col md:flex-row gap-4">
+            {/* Date of Birth Picker */}
+            <div className="relative w-full md:w-1/2">
+              <DatePicker
+                selected={birthDate}
+                onChange={handleDateChange}
+                placeholderText="Date of Birth"
+                className={`w-full px-4 py-3 pl-12 border rounded-xl text-gray-700 shadow-sm focus:ring-2 focus:ring-emerald-500 ${darkMode ? 'bg-gray-700 text-white border-gray-600' : 'bg-white border-gray-300'
+                  }`}
+                dateFormat="dd/MM/yyyy"
+                showYearDropdown
+                scrollableYearDropdown
+                yearDropdownItemNumber={50}
+                required
+              />
+              <Calendar className="w-5 h-5 absolute left-4 top-3.5 text-gray-400" />
+            </div>
+
+            {/* Country Dropdown */}
+            <div className="relative w-full md:w-1/2">
+              <Select
+                options={countryOptions}
+                placeholder="Country of Residence"
+                onChange={handleCountryChange}
+                className="w-full"
+                styles={selectStyles}
+                isSearchable
+                required
+              />
+            </div>
           </div>
 
-          {/* Country Dropdown */}
-          <div className="relative">
-            <Select
-              options={countryOptions}
-              placeholder="Country of Residence"
-              onChange={handleCountryChange}
-              className="w-full"
-              styles={selectStyles}
-              isSearchable
-              required
-            />
-          </div>
+
 
           {/* Password Fields */}
           <div className="relative">
