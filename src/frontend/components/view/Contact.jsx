@@ -1,17 +1,17 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext} from 'react';
 import { Phone, Mail, MessageCircle } from 'lucide-react';
 import { DarkModeContext } from './DarkModeContext';
 import Sigiriya from '../../../assets/Sigiriya_800x520.jpg';
 import Footer from './Footer';
 import Navbar from './Navbar';
 import AIChatbot from '../ChatBot/AIChatbot';
-import { useNavigate } from 'react-router-dom';
+//import { useNavigate } from 'react-router-dom';
 import BackButton from './BackButton';
 
 const ContactPage = () => {
     const { darkMode } = useContext(DarkModeContext);
-    const navigate = useNavigate();
-    const [isOpen, setIsOpen] = useState(false);
+   // const navigate = useNavigate();
+    
 
     return (
         <div className={`min-h-screen ${darkMode ? 'bg-gray-900 text-white' : 'bg-white text-gray-900'}`}>
