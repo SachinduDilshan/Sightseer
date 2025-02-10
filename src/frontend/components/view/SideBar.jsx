@@ -66,6 +66,13 @@ const SidebarMenu = () => {
               <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
                 {userData?.country || 'Location'}
               </p>
+              <button
+                onClick={() => navigate('/profile')}
+                className={`w-full flex items-center space-x-3 p-2 rounded-lg mt-2 ${darkMode ? 'hover:bg-gray-800' : 'hover:bg-gray-100'}`}
+              >
+                <span>View Profile</span>
+              </button>
+
             </div>
           </div>
         </div>
