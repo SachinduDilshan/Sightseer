@@ -31,6 +31,7 @@ const Footer = () => {
             <li><a href="#" className="hover:underline">About Us</a></li>
             <li><a href="#" className="hover:underline">Blog</a></li>
             <li><a href="#" className="hover:underline">Careers</a></li>
+            <li><button onClick={() => navigate('/home')} className="hover:underline">Back to Home</button></li>
           </ul>
         </div>
 
