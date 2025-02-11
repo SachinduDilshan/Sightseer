@@ -9,7 +9,7 @@ const AIChatbot = () => {
     const { darkMode } = useContext(DarkModeContext);
     const [isOpen, setIsOpen] = useState(false);
     const [messages, setMessages] = useState([
-        { id: 1, text: "Hi there! I'm the Sightseer AI assistant. How can I help you plan your Sri Lankan adventure today?", sender: 'ai' }
+        { id: 1, text: "Hi traveler! I'm the Sightseer AI assistant. How can I help you plan your Sri Lankan adventure today?", sender: 'ai' }
     ]);
     const [inputMessage, setInputMessage] = useState('');
     const messagesEndRef = useRef(null);
