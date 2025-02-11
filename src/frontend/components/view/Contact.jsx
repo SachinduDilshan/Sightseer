@@ -71,8 +71,9 @@ const ContactPage = () => {
                     </p>
                 </div>
 
-                <Footer />
+                
             </div>
+            <Footer />
 
             <AIChatbot />
         </div>
