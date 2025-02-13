@@ -24,7 +24,7 @@ export const fetchDestinationsData = async (query = 'Sri Lanka') => {
       }
 
       return data.data
-          .filter(place => place.result_type === 'geos') // 🔹 Ensures only destinations (not hotels, restaurants, etc.)
+          .filter(place => place.result_type === 'geos')
           .map(place => {
               const { result_object } = place;
 
