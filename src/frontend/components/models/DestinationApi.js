@@ -4,7 +4,7 @@ export const fetchDestinationsData = async (query = 'Sri Lanka') => {
   const options = {
       method: 'GET',
       headers: {
-          'X-RapidAPI-Key': process.env.REACT_APP_RAPID_API_KEY,
+          'X-RapidAPI-Key': '438a6d20a5msh915e94afab7014dp12b4cbjsnba33092ae5d9',
           'X-RapidAPI-Host': 'travel-advisor.p.rapidapi.com'
       }
   };
@@ -24,7 +24,7 @@ export const fetchDestinationsData = async (query = 'Sri Lanka') => {
       }
 
       return data.data
-          .filter(place => place.result_type === 'geos')
+          
           .map(place => {
               const { result_object } = place;
 

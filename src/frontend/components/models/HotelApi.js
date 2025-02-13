@@ -1,52 +1,71 @@
-const RAPID_API_KEY = 'c390c4dc43msh0c78e39a8ef2870p1f3f92jsn05dd395bc8d1'; // Get a new key if needed
-const RAPID_API_HOST = 'hotels4.p.rapidapi.com';
-
-export const fetchHotelsData = async (query = 'Colombo') => {
-  const url = `https://travel-advisor.p.rapidapi.com/hotels/list`;
-
+export const fetchHotelsData = async (query = 'Colombo, Sri Lanka') => {
+  // Using the correct endpoint for location search
+  const locationUrl = `https://travel-advisor.p.rapidapi.com/locations/search?query=${encodeURIComponent(query)}&limit=30&offset=0&units=km&location_id=1&currency=USD&sort=relevance&lang=en_US`;
+  
   const options = {
-    method: 'POST',  // 🔹 Most hotel APIs use POST instead of GET
+    method: 'GET',
     headers: {
-      'X-RapidAPI-Key': RAPID_API_KEY,
-      'X-RapidAPI-Host': RAPID_API_HOST,
-      'Content-Type': 'application/json', 
+      'X-RapidAPI-Key': process.env.REACT_APP_RAPID_API_KEY,
+      'X-RapidAPI-Host': 'travel-advisor.p.rapidapi.com',
     },
-    body: JSON.stringify({
-      currency: "USD",
-      locale: "en_US",
-      destination: {
-        regionId: query, // 🔹 If 'query' is the regionId, use it here
-      },
-      checkInDate: { day: 15, month: 3, year: 2025 },  // 🔹 Sample check-in date
-      checkOutDate: { day: 20, month: 3, year: 2025 }, // 🔹 Sample check-out date
-      rooms: [{ adults: 2 }], // 🔹 Sample request for 2 adults
-      resultsSize: 30, 
-    }),
   };
 
   try {
-    const response = await fetch(url, options);
-
-    if (!response.ok) {
-      const errorText = await response.text();
-      throw new Error(`Network response was not ok: ${response.status} - ${errorText}`);
+    // Get location data
+    const locationResponse = await fetch(locationUrl, options);
+    
+    if (!locationResponse.ok) {
+      throw new Error(`Location search failed: ${locationResponse.status}`);
     }
 
-    const data = await response.json();
+    const locationData = await locationResponse.json();
+    console.log("Location Search Response:", locationData);
+    
+    // Find the first location result that represents a city or hotel
+    const location = locationData.data.find(item => 
+      item.result_type === "geos" || 
+      item.result_type === "hotels"
+    );
 
-    if (!data || !data.data || !data.data.propertySearch || !Array.isArray(data.data.propertySearch.properties)) {
-      throw new Error('Invalid API response structure');
+    if (!location) {
+      throw new Error('No valid location found for the search query');
     }
 
-    return data.data.propertySearch.properties.map(hotel => ({
-      id: hotel.id || 'N/A',
+    const locationId = location.result_object.location_id;
+
+    // Use the correct endpoint for hotel list
+    const hotelsUrl = `https://travel-advisor.p.rapidapi.com/hotels/list?location_id=${locationId}&adults=1&rooms=1&nights=2&offset=0&currency=USD&order=asc&limit=30&sort=recommended&lang=en_US`;
+
+    const hotelResponse = await fetch(hotelsUrl, options);
+
+    if (!hotelResponse.ok) {
+      throw new Error(`Hotel search failed: ${hotelResponse.status}`);
+    }
+
+    const hotelData = await hotelResponse.json();
+    console.log("Hotels Response:", hotelData);
+
+    if (!hotelData.data || hotelData.data.length === 0) {
+      throw new Error('No hotels found in the response');
+    }
+
+    return hotelData.data.map(hotel => ({
+      id: hotel.location_id || 'N/A',
       name: hotel.name || 'Unknown Hotel',
-      rating: hotel.reviews?.score || 4.5,
-      price: hotel.price?.lead?.amount || 'N/A',
-      location: hotel.destinationInfo?.distanceFromDestination?.value || 'Unknown Location',
-      amenities: hotel.amenities || ['WiFi', 'Pool'],
-      image: hotel.propertyImage?.image?.url || '/api/placeholder/400/250',
+      rating: hotel.rating || 'N/A',
+      price: hotel.price_level || hotel.price || 'Price not available',
+      location: hotel.location_string || 'Sri Lanka',
+      amenities: 
+        hotel.amenities?.slice(0, 5) || 
+        hotel.property_amenities?.slice(0, 5) || 
+        ['Basic amenities'],
+      image: 
+        hotel.photo?.images?.large?.url || 
+        hotel.photo?.images?.original?.url || 
+        '/api/placeholder/400/250',
+      description: hotel.description || ''
     }));
+
   } catch (error) {
     console.error('❌ Error fetching hotels:', error);
     throw error;
