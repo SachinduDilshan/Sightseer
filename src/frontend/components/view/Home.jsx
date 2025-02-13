@@ -9,6 +9,7 @@ import Sigiriya from '../../../assets/Sigiriya.jpeg';
 import Footer from "./Footer.jsx";
 import { DarkModeContext } from './DarkModeContext';
 import AIChatbot from '../ChatBot/AIChatbot';
+import { Search } from 'lucide-react';
 
 import Navbar from './Navbar.jsx';
 
@@ -20,7 +21,17 @@ const HomePage = () => {
     <div className={`min-h-screen ${darkMode ? 'dark' : ''}`}>
       <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-200">
         {/* Navigation */}
-        <Navbar />
+        <Navbar /> <br></br>
+        <div className="relative max-w-2xl mx-auto">
+
+            <input
+              type="text"
+              placeholder="Search anything here..."
+              className="w-full px-4 py-2 border rounded-full focus:outline-none focus:ring-2 focus:ring-teal-500 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:placeholder-gray-400"
+            />
+
+            <Search className="absolute right-4 top-2.5 h-5 w-5 text-gray-400" />
+          </div> <br></br>
 
         {/* Hero Section */}
         <div className="relative h-[200px] md:h-[300px] mb-8">

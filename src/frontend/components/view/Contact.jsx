@@ -1,4 +1,4 @@
-import React, { useContext} from 'react';
+import React, { useContext } from 'react';
 import { Phone, Mail, MessageCircle } from 'lucide-react';
 import { DarkModeContext } from './DarkModeContext';
 import Sigiriya from '../../../assets/Sigiriya_800x520.jpg';
@@ -10,14 +10,14 @@ import BackButton from './BackButton';
 
 const ContactPage = () => {
     const { darkMode } = useContext(DarkModeContext);
-   // const navigate = useNavigate();
-    
+    // const navigate = useNavigate();
+
 
     return (
         <div className={`min-h-screen ${darkMode ? 'bg-gray-900 text-white' : 'bg-white text-gray-900'}`}>
             <Navbar />
             {/* Back Button Section */}
-           <div className="p-4 flex justify-between items-center bg-transparent text-gray-900 dark:text-white">
+            <div className="p-4 flex justify-between items-center bg-transparent text-gray-900 dark:text-white">
                 <BackButton className="p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700" />
             </div>
 
@@ -71,7 +71,7 @@ const ContactPage = () => {
                     </p>
                 </div>
 
-                
+
             </div>
             <Footer />
 
