@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Search, User, Moon, Sun } from 'lucide-react';
+import { User, Moon, Sun } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import Logo from '../../../assets/sightseerlogo.png';
 import SidebarMenu from './SideBar.jsx';
@@ -17,7 +17,7 @@ const Navbar = () => {
         <div className="flex items-center gap-8">
           <div className="flex items-center gap-2">
             <img src={Logo} alt="Sightseer Logo" className="h-10 w-10" />
-            <span className="text-teal-600 dark:text-teal-400 font-semibold">SIGHTSEER</span>
+            <span className="text-emerald-600 dark:text-emerald-400 font-semibold">SIGHTSEER</span>
             <SidebarMenu />
           </div>
 
@@ -35,8 +35,8 @@ const Navbar = () => {
                 onClick={() => navigate(item.path)}
                 className={`px-4 py-2 rounded-md transition-all ${
                   location.pathname === item.path
-                    ? 'text-teal-500' // Active button style
-                    : 'text-gray-700 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400'
+                    ? 'text-emerald-500' // Active button style
+                    : 'text-gray-700 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400'
                 }`}
               >
                 {item.label}
@@ -56,7 +56,7 @@ const Navbar = () => {
           </button>
 
           {/* User Profile */}
-          <button className="text-gray-700 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400">
+          <button className="text-gray-700 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400">
             <User className="h-6 w-6" onClick={() => navigate('/')} />
           </button>
         </div>

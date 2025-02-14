@@ -47,17 +47,17 @@ const ContactPage = () => {
                     {[{ icon: Phone, title: 'Talk to our expert', value: '+94 11 234 5678' },
                     { icon: Mail, title: 'Email us anytime', value: 'contact@sightseer.lk' },
                     { icon: MessageCircle, title: 'Chat with us now', value: 'Chat Now', isButton: true }].map((item, index) => (
-                        <div key={index} className="bg-white dark:bg-gray-800 p-6 rounded-lg border border-teal-100 dark:border-gray-700 text-center hover:shadow-lg transition-shadow">
+                        <div key={index} className="bg-white dark:bg-gray-800 p-6 rounded-lg border border-emerald-100 dark:border-gray-700 text-center hover:shadow-lg transition-shadow">
                             <div className="flex justify-center mb-4">
-                                <item.icon className="w-8 h-8 text-teal-500" />
+                                <item.icon className="w-8 h-8 text-emerald-500" />
                             </div>
                             <h3 className="font-medium mb-2 text-gray-800 dark:text-white">{item.title}</h3>
                             {item.isButton ? (
-                                <button className="bg-teal-500 text-white px-4 py-2 rounded-md hover:bg-teal-600">
+                                <button className="bg-emerald-500 text-white px-4 py-2 rounded-md hover:bg-emerald-600">
                                     {item.value}
                                 </button>
                             ) : (
-                                <p className="text-teal-500">{item.value}</p>
+                                <p className="text-emerald-500">{item.value}</p>
                             )}
                         </div>
                     ))}

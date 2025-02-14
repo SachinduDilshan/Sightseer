@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Menu, X, Settings, LogOut, History, Heart, Image, Calendar, MapPin, Contact } from 'lucide-react';
+import { Menu, X, LogOut, History, Heart, Image, Calendar, MapPin, Contact } from 'lucide-react';
 import { auth, database } from '../../../firebasefront';
 import { ref, onValue } from 'firebase/database';
 import { signOut } from 'firebase/auth';

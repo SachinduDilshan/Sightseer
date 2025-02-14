@@ -69,7 +69,7 @@ const DestinationPage = () => {
             />
             <button
               type="submit"
-              className="bg-teal-500 text-white px-6 py-3 rounded-lg hover:bg-teal-600 transition-colors"
+              className="bg-emerald-500 text-white px-6 py-3 rounded-lg hover:bg-emerald-600 transition-colors"
             >
               Search
             </button>
@@ -83,7 +83,7 @@ const DestinationPage = () => {
               key={category}
               onClick={() => setActiveFilter(category)}
               className={`px-4 py-2 rounded-full text-sm ${activeFilter === category
-                  ? 'bg-teal-500 text-white'
+                  ? 'bg-emerald-500 text-white'
                   : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300'
                 }`}
             >
@@ -102,7 +102,7 @@ const DestinationPage = () => {
         {/* Destinations Grid */}
         {loading ? (
           <div className="text-center dark:text-white">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-teal-500 mx-auto mb-4"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-500 mx-auto mb-4"></div>
             Loading destinations...
           </div>
         ) : (
@@ -133,10 +133,10 @@ const DestinationPage = () => {
                     {destination.description}
                   </p>
                   <div className="flex justify-between items-center">
-                    <span className="px-3 py-1 bg-teal-100 dark:bg-teal-900 text-teal-600 dark:text-teal-300 rounded-full text-sm">
+                    <span className="px-3 py-1 bg-emerald-100 dark:bg-emerald-900 text-emerald-600 dark:text-emerald-300 rounded-full text-sm">
                       {destination.category}
                     </span>
-                    <button className="bg-teal-500 text-white px-4 py-2 rounded-md hover:bg-teal-600 transition-colors">
+                    <button className="bg-emerald-500 text-white px-4 py-2 rounded-md hover:bg-emerald-600 transition-colors">
                       Explore →
                     </button>
                   </div>

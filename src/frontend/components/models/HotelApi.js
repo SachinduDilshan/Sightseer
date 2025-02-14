@@ -1,4 +1,4 @@
-export const fetchHotelsData = async (query = 'Colombo, Sri Lanka') => {
+export const fetchHotelsData = async (query = 'SriLanka') => {
   // Using the correct endpoint for location search
   const locationUrl = `https://travel-advisor.p.rapidapi.com/locations/search?query=${encodeURIComponent(query)}&limit=30&offset=0&units=km&location_id=1&currency=USD&sort=relevance&lang=en_US`;
   

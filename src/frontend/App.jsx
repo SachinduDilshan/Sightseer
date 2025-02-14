@@ -1,7 +1,7 @@
 // src/App.jsx
 import React from "react";
 import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
-import AuthPage from "./components/view/AuthPage";
+import AuthPage from "./components/models/AuthPage";
 import HomePage from "./components/view/Home";
 import ContactPage from "./components/view/Contact";
 import DestinationPage from "./components/view/Destination";

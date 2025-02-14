@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import '../../styles/Home.css';
-import { useNavigate } from 'react-router-dom';
+//import { useNavigate } from 'react-router-dom';
 import Ella from '../../../assets/ella.jpg';
 import Jaffna from '../../../assets/Jaffna.jpg';
 import Beach from '../../../assets/beach.jpg';
@@ -14,8 +14,8 @@ import { Search } from 'lucide-react';
 import Navbar from './Navbar.jsx';
 
 const HomePage = () => {
-  const navigate = useNavigate();
-  const { darkMode, toggleDarkMode } = useContext(DarkModeContext);
+  //const navigate = useNavigate();
+  const { darkMode, toggleDarkMode} = useContext(DarkModeContext);
 
   return (
     <div className={`min-h-screen ${darkMode ? 'dark' : ''}`}>
@@ -27,7 +27,7 @@ const HomePage = () => {
             <input
               type="text"
               placeholder="Search anything here..."
-              className="w-full px-4 py-2 border rounded-full focus:outline-none focus:ring-2 focus:ring-teal-500 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:placeholder-gray-400"
+              className="w-full px-4 py-2 border rounded-full focus:outline-none focus:ring-2 focus:ring-emerald-500 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:placeholder-gray-400"
             />
 
             <Search className="absolute right-4 top-2.5 h-5 w-5 text-gray-400" />
@@ -44,8 +44,8 @@ const HomePage = () => {
             <h1 className="text-3xl md:text-5xl font-bold text-center mb-2">
               Discover the<br />Magic of Sri Lanka!
             </h1>
-            <p className="text-teal-400 mb-4">✨AI-Powered Travel Planning</p>
-            <button className="bg-teal-500 text-white px-6 py-2 rounded-md flex items-center gap-2 hover:bg-teal-600">
+            <p className="text-emerald-400 mb-4">✨AI-Powered Travel Planning</p>
+            <button className="bg-emerald-500 text-white px-6 py-2 rounded-md flex items-center gap-2 hover:bg-emerald-600">
               <span className="text-lg">📝 Plan My Trip</span>
             </button>
           </div>
@@ -115,7 +115,7 @@ const HomePage = () => {
               </div>
             </div>
           </div>
-          <button className="text-teal-500 dark:text-teal-400 hover:text-teal-600 dark:hover:text-teal-500 mt-4 mx-auto block">
+          <button className="text-emerald-500 dark:text-emerald-400 hover:text-emerald-600 dark:hover:text-emerald-500 mt-4 mx-auto block">
             See more
           </button>
         </div>

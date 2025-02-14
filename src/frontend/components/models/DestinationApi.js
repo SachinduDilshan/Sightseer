@@ -1,46 +1,62 @@
+const getAmadeusAccessToken = async () => {
+    const authUrl = "https://test.api.amadeus.com/v1/security/oauth2/token";
+    const clientId = "PIzvkZWBGl3pFKAZtDBtAGZLgmrEHLVC";
+    const clientSecret = "VNzJGp15ZIiq9Vtt";
+
+    try {
+        const response = await fetch(authUrl, {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: `grant_type=client_credentials&client_id=${clientId}&client_secret=${clientSecret}`
+        });
+
+        if (!response.ok) {
+            throw new Error(`Failed to get access token: ${response.status}`);
+        }
+
+        const data = await response.json();
+        return data.access_token;
+    } catch (error) {
+        console.error("❌ Error fetching Amadeus access token:", error);
+        throw error;
+    }
+};
+
 export const fetchDestinationsData = async (query = 'Sri Lanka') => {
-  const url = 'https://travel-advisor.p.rapidapi.com/locations/search';
+    const url = `https://test.api.amadeus.com/v1/reference-data/locations?subType=CITY&keyword=${encodeURIComponent(query)}&countryCode=LK`;
 
-  const options = {
-      method: 'GET',
-      headers: {
-          'X-RapidAPI-Key': '438a6d20a5msh915e94afab7014dp12b4cbjsnba33092ae5d9',
-          'X-RapidAPI-Host': 'travel-advisor.p.rapidapi.com'
-      }
-  };
+    try {
+        const accessToken = await getAmadeusAccessToken();
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${accessToken}`,
+                'Content-Type': 'application/json'
+            }
+        });
 
-  try {
-      const response = await fetch(`${url}?query=${encodeURIComponent(query)}&limit=30&currency=USD&sort=relevance&lang=en_US`, options);
-      
-      if (!response.ok) {
-          const errorText = await response.text();
-          throw new Error(`Network response was not ok: ${response.status} - ${errorText}`);
-      }
+        if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(`Network response was not ok: ${response.status} - ${errorText}`);
+        }
 
-      const data = await response.json();
+        const data = await response.json();
 
-      if (!data || !data.data || !Array.isArray(data.data)) {
-          throw new Error('Invalid response structure');
-      }
+        if (!data || !data.data || !Array.isArray(data.data)) {
+            throw new Error('Invalid response structure');
+        }
 
-      return data.data
-          
-          .map(place => {
-              const { result_object } = place;
+        return data.data.map((place, index) => ({
+            id: place.id || `generated-${index}`,  // Ensuring unique keys
+            name: place.name || 'Unknown Location',
+            iataCode: place.iataCode || 'N/A',
+            category: 'Destination',
+            countryCode: place.address?.countryCode || 'N/A',
+            type: place.subType || 'N/A',
+        }));
 
-              return {
-                  id: result_object.location_id || 'N/A',
-                  name: result_object.name || 'Unknown Location',
-                  rating: result_object.rating || 4.0,
-                  description: result_object.geo_description || 'Explore this beautiful place!',
-                  category: 'Destination', // 🔹 General category for destinations
-                  image: result_object.photo?.images?.large?.url || '/api/placeholder/400/250',
-                  reviews: result_object.num_reviews || 0,
-                  type: result_object.timezone || 'N/A',
-              };
-          });
-  } catch (error) {
-      console.error('❌ Error fetching destinations:', error);
-      throw error;
-  }
+    } catch (error) {
+        console.error('❌ Error fetching destinations:', error);
+        throw error;
+    }
 };

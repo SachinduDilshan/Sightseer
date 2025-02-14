@@ -52,7 +52,7 @@ const AIChatbot = () => {
         <div className="fixed bottom-6 right-6 z-50">
             {isOpen && (
                 <div className={`w-80 h-[500px] rounded-xl shadow-2xl border ${darkMode ? 'bg-gray-800 border-gray-700 text-white' : 'bg-white border-gray-200'} flex flex-col overflow-hidden`}>
-                    <div className={`p-4 flex justify-between items-center ${darkMode ? 'bg-gray-900 text-white' : 'bg-teal-600 text-white'}`}>
+                    <div className={`p-4 flex justify-between items-center ${darkMode ? 'bg-gray-900 text-white' : 'bg-emerald-600 text-white'}`}>
                         <h3 className="font-semibold">Sightseer AI Assistant</h3>
                         <button onClick={() => setIsOpen(false)} className="hover:bg-opacity-20 rounded-full p-1">
                             <X className="w-6 h-6" />
@@ -61,7 +61,7 @@ const AIChatbot = () => {
                     <div className={`flex-1 overflow-y-auto p-4 ${darkMode ? 'bg-gray-800 text-gray-200' : 'bg-gray-50 text-gray-800'}`}>
                         {messages.map((msg) => (
                             <div key={msg.id} className={`mb-4 max-w-[90%] clear-both ${msg.sender === 'user' ? 'ml-auto text-right' : 'mr-auto text-left'}`}>
-                                <div className={`inline-block p-3 rounded-lg ${msg.sender === 'user' ? (darkMode ? 'bg-teal-700 text-white' : 'bg-teal-500 text-white') : (darkMode ? 'bg-gray-700 text-gray-200' : 'bg-gray-200 text-gray-800')}`}>
+                                <div className={`inline-block p-3 rounded-lg ${msg.sender === 'user' ? (darkMode ? 'bg-emerald-700 text-white' : 'bg-emerald-500 text-white') : (darkMode ? 'bg-gray-700 text-gray-200' : 'bg-gray-200 text-gray-800')}`}>
                                     {msg.text}
                                 </div>
                             </div>
@@ -84,13 +84,13 @@ const AIChatbot = () => {
                             className={`flex-1 p-2 rounded-lg mr-2 ${darkMode ? 'bg-gray-700 text-white placeholder-gray-400' : 'bg-gray-100 text-gray-800'}`}
                         />
                         <button onClick={handleSendMessage}
-                            className={`p-2 rounded-full ${darkMode ? 'bg-teal-700 hover:bg-teal-600' : 'bg-teal-500 hover:bg-teal-600'} text-white`}>
+                            className={`p-2 rounded-full ${darkMode ? 'bg-emerald-700 hover:bg-emerald-600' : 'bg-emerald-500 hover:bg-emerald-600'} text-white`}>
                             <Send className="w-5 h-5" />
                         </button>
                     </div>
                 </div>
             )}
-            <button onClick={() => setIsOpen(!isOpen)} className={`rounded-full p-4 shadow-2xl ${darkMode ? 'bg-teal-700 hover:bg-teal-600 text-white' : 'bg-teal-500 hover:bg-teal-600 text-white'} transition-all duration-300`}>
+            <button onClick={() => setIsOpen(!isOpen)} className={`rounded-full p-4 shadow-2xl ${darkMode ? 'bg-emerald-700 hover:bg-emerald-600 text-white' : 'bg-emerald-500 hover:bg-emerald-600 text-white'} transition-all duration-300`}>
                 {isOpen ? <X className="w-6 h-6" /> : <MessageCircle className="w-6 h-6" />}
             </button>
         </div>

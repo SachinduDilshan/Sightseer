@@ -70,7 +70,7 @@ const HotelPage = () => {
             />
             <button
               type="submit"
-              className="bg-teal-500 text-white px-6 py-3 rounded-lg hover:bg-teal-600 transition-colors"
+              className="bg-emerald-500 text-white px-6 py-3 rounded-lg hover:bg-emerald-600 transition-colors"
             >
               Search
             </button>
@@ -97,7 +97,7 @@ const HotelPage = () => {
         {/* Hotels Grid */}
         {loading ? (
           <div className="text-center dark:text-white">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-teal-500 mx-auto mb-4"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-500 mx-auto mb-4"></div>
             Loading hotels...
           </div>
         ) : (
@@ -132,8 +132,8 @@ const HotelPage = () => {
                     ))}
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-xl font-bold text-teal-500">${hotel.price}</span>
-                    <button className="bg-teal-500 text-white px-4 py-2 rounded-md hover:bg-teal-600 transition-colors">
+                    <span className="text-xl font-bold text-emerald-500">${hotel.price}</span>
+                    <button className="bg-emerald-500 text-white px-4 py-2 rounded-md hover:bg-emerald-600 transition-colors">
                       Book Now
                     </button>
                   </div>
