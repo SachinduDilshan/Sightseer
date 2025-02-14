@@ -63,7 +63,7 @@ const HotelPage = () => {
           <form onSubmit={handleSearch} className="flex flex-col md:flex-row gap-4 mb-6">
             <input
               type="text"
-              placeholder="Search location..."
+              placeholder="Search location...  ex: Colombo"
               className="flex-1 p-3 rounded-lg border dark:border-gray-700 dark:bg-gray-800 dark:text-white"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
@@ -74,16 +74,6 @@ const HotelPage = () => {
             >
               Search
             </button>
-            <select
-              className="p-3 rounded-lg border dark:border-gray-700 dark:bg-gray-800 dark:text-white"
-              value={priceRange}
-              onChange={(e) => setPriceRange(e.target.value)}
-            >
-              <option value="all">All Prices</option>
-              <option value="budget">Budget ($)</option>
-              <option value="mid">Mid-Range ($$)</option>
-              <option value="luxury">Luxury ($$$)</option>
-            </select>
           </form>
         </div>
 
