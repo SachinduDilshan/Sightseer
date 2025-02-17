@@ -12,96 +12,75 @@ from sklearn.metrics.pairwise import cosine_similarity
 nltk.download('stopwords')
 stop_words = set(stopwords.words('english'))  # Load stopwords
 
-# ---- DATA LOADING & CLEANING ----
-def load_and_clean_data(data, text_column, group_by_column, is_dataframe=False):
-    """
-    Load CSV file (or accept a DataFrame), drop missing values, and clean text data.
-    
-    Args:
-        data (str or pd.DataFrame): File path (str) or DataFrame.
-        text_column (str): Column containing text data.
-        group_by_column (str): Column to group by.
-        is_dataframe (bool): Whether 'data' is a DataFrame.
-        
-    Returns:
-        pd.DataFrame: Cleaned and grouped DataFrame.
-    """
-    if is_dataframe:
-        df = data.copy()  # Use passed DataFrame directly
-    else:
-        if not os.path.exists(data):
-            print(f"⚠️ Warning: File not found: {data}. Skipping...")
-            return None  # Skip processing if file is missing
-        df = pd.read_csv(data)  # Load dataset from file path
-
-    # Ensure required columns exist
-    if text_column not in df.columns or group_by_column not in df.columns:
-        print(f"❌ Error: Missing required columns '{text_column}' or '{group_by_column}' in dataset. Skipping...")
-        return None
-
-    df.dropna(subset=[text_column], inplace=True)  # Drop rows with missing text
-    df['clean_text'] = df[text_column].apply(clean_text)
-
-    # Group by specified column and merge text
-    df_grouped = df.groupby(group_by_column)['clean_text'].apply(lambda x: ' '.join(x)).reset_index()
-    return df_grouped
-
-
-# ---- TEXT CLEANING ----
+# ---- TEXT CLEANING FUNCTION ----
 def clean_text(text):
     """
-    Preprocess text: lowercase, remove special characters, and remove stopwords.
+    Preprocess text: convert to lowercase, remove special characters, and stopwords.
     """
     text = str(text).lower()
     text = re.sub(r'[^a-z\s]', '', text)  # Remove punctuation & numbers
     text = ' '.join([word for word in text.split() if word not in stop_words])  # Remove stopwords
     return text
 
-# ---- TEXT VECTORIZATION ----
+# ---- DATA LOADING & CLEANING FUNCTION ----
+def load_and_clean_data(data, text_column, group_by_column, is_dataframe=False):
+    """
+    Load CSV file (or accept a DataFrame), drop missing values, and clean text data.
+    """
+    if is_dataframe:
+        df = data.copy()
+    else:
+        if not os.path.exists(data):
+            print(f"⚠️ Warning: File not found: {data}. Skipping...")
+            return None
+        df = pd.read_csv(data)
+
+    if text_column not in df.columns or group_by_column not in df.columns:
+        print(f"❌ Error: Missing columns '{text_column}' or '{group_by_column}' in dataset. Skipping...")
+        return None
+
+    df.dropna(subset=[text_column], inplace=True)
+    df['clean_text'] = df[text_column].apply(clean_text)
+    df_grouped = df.groupby(group_by_column)['clean_text'].apply(lambda x: ' '.join(x)).reset_index()
+    return df_grouped
+
+# ---- TEXT VECTORIZATION FUNCTION ----
 def vectorize_text(df, text_column):
-    """
-    Convert text data into numerical format using TF-IDF.
-    """
-    tfidf = TfidfVectorizer(ngram_range=(1, 2))  # Use unigrams & bigrams
+    """Convert text data into numerical format using TF-IDF."""
+    tfidf = TfidfVectorizer(ngram_range=(1, 2))  # Unigrams & bigrams
     tfidf_matrix = tfidf.fit_transform(df[text_column])
     return tfidf, tfidf_matrix
 
-# ---- COMPUTE SIMILARITY ----
+# ---- COMPUTE SIMILARITY FUNCTION ----
 def compute_similarity(tfidf_matrix):
-    """
-    Compute cosine similarity between entities.
-    """
+    """Compute cosine similarity between entities."""
     return cosine_similarity(tfidf_matrix, tfidf_matrix)
 
-# ---- SAVE & LOAD SIMILARITY MATRIX ----
-def save_similarity_matrix(cosine_sim, filename):
-    """
-    Save the computed cosine similarity matrix to a file.
-    """
+# ---- SAVE FUNCTIONS ----
+def save_pickle(data, filename):
+    """Save data to a pickle file."""
     with open(filename, "wb") as f:
-        pickle.dump(cosine_sim, f)
+        pickle.dump(data, f)
 
-def load_similarity_matrix(filename):
-    """
-    Load the cosine similarity matrix from a file.
-    """
-    with open(filename, "rb") as f:
-        return pickle.load(f)
+def save_index_mapping(df, index_column, filename):
+    """Save a dictionary mapping indices to names."""
+    index_mapping = {i: name for i, name in enumerate(df[index_column])}
+    save_pickle(index_mapping, filename)
 
 # ---- MAIN EXECUTION ----
 if __name__ == "__main__":
     dataset_paths = {
-        "destinations": r"D:/Year 3-Sem-2/SightseerProject/sightseer/src/backend/DataSet/Destination Reviews (final).csv",
-        "hotels": r"D:/Year 3-Sem-2/SightseerProject/sightseer/src/backend/DataSet/Information for Accommodation_SL.csv",
-        "restaurants": r"D:/Year 3-Sem-2/SightseerProject/sightseer/src/backend/DataSet/SL_Restaurants.csv",
-        "travel_agents": r"D:/Year 3-Sem-2/SightseerProject/sightseer/src/backend/DataSet/SL_Travel_Agents.csv",
-        "tourist_shops": r"D:/Year 3-Sem-2/SightseerProject/sightseer/src/backend/DataSet/SL_Tourist_Shops.csv"
+        "destinations": "D:/Year 3-Sem-2/SightseerProject/sightseer/src/backend/DataSet/Destination Reviews (final).csv",
+        "hotels": "D:/Year 3-Sem-2/SightseerProject/sightseer/src/backend/DataSet/Information for Accommodation_SL.csv",
+        "restaurants": "D:/Year 3-Sem-2/SightseerProject/sightseer/src/backend/DataSet/SL_Restaurants.csv",
+        "travel_agents": "D:/Year 3-Sem-2/SightseerProject/sightseer/src/backend/DataSet/SL_Travel_Agents.csv",
+        "tourist_shops": "D:/Year 3-Sem-2/SightseerProject/sightseer/src/backend/DataSet/SL_Tourist_Shops.csv"
     }
 
     column_mappings = {
         "destinations": ("Review", "Destination"),
         "hotels": ("Hotel_Description", "Hotel_Name"),
-        "restaurants": ("combined_text", "Restaurant_Name"),  # Combined text will be created
+        "restaurants": ("combined_text", "Restaurant_Name"),
         "travel_agents": ("combined_text", "Agent_Name"),
         "tourist_shops": ("combined_text", "Shop_Name")
     }
@@ -115,36 +94,23 @@ if __name__ == "__main__":
             print(f"⚠️ Warning: File for {category} not found: {path}. Skipping...")
             continue
 
-        df = pd.read_csv(path)  # Load dataset
+        df = pd.read_csv(path)
 
-        # Handle missing required columns by creating a combined text column
-        if category == "restaurants":
-            required_cols = ["District", "Grade", "Address", "Restaurant_Name"]
-            if not all(col in df.columns for col in required_cols):
-                print(f"⚠️ Warning: Missing required columns in restaurant dataset. Skipping...")
+        if category in ["restaurants", "travel_agents", "tourist_shops"]:
+            required_cols = {
+                "restaurants": ["District", "Grade", "Address", "Restaurant_Name"],
+                "travel_agents": ["District", "Agent_Name"],
+                "tourist_shops": ["District", "Shop_Name"]
+            }
+            
+            if not all(col in df.columns for col in required_cols[category]):
+                print(f"⚠️ Warning: Missing required columns in {category} dataset. Skipping...")
                 continue
 
-            df["combined_text"] = df["District"].astype(str) + " " + df["Grade"].astype(str) + " " + df["Address"].astype(str)
-            cleaned_data[category] = load_and_clean_data(df, "combined_text", "Restaurant_Name", is_dataframe=True)
-
-        elif category == "travel_agents":
-            required_cols = ["District", "Agent_Name"]
-            if not all(col in df.columns for col in required_cols):
-                print(f"⚠️ Warning: Missing required columns in travel agents dataset. Skipping...")
-                continue
-
-            df["combined_text"] = df["District"].astype(str) + " " + df["Agent_Name"].astype(str)  # FIXED
-            cleaned_data[category] = load_and_clean_data(df, "combined_text", "Agent_Name", is_dataframe=True)
-
-        elif category == "tourist_shops":
-            required_cols = ["District", "Shop_Name"]
-            if not all(col in df.columns for col in required_cols):
-                print(f"⚠️ Warning: Missing required columns in tourist shops dataset. Skipping...")
-                continue
-
-            df["combined_text"] = df["District"].astype(str) + " " + df["Shop_Name"].astype(str)
-            cleaned_data[category] = load_and_clean_data(df, "combined_text", "Shop_Name", is_dataframe=True)
-
+            df["combined_text"] = df[required_cols[category][0]].astype(str)
+            for col in required_cols[category][1:-1]:
+                df["combined_text"] += " " + df[col].astype(str)
+            cleaned_data[category] = load_and_clean_data(df, "combined_text", required_cols[category][-1], is_dataframe=True)
         else:
             text_col, group_col = column_mappings[category]
             cleaned_data[category] = load_and_clean_data(path, text_col, group_col)
@@ -160,7 +126,11 @@ if __name__ == "__main__":
         cosine_sim = compute_similarity(tfidf_matrix)
 
         save_filename = f"cosine_similarity_{category}.pkl"
-        save_similarity_matrix(cosine_sim, save_filename)
+        save_pickle(cosine_sim, save_filename)
         print(f"✅ Saved similarity matrix: {save_filename}")
+
+        index_mapping_file = f"index_mapping_{category}.pkl"
+        save_index_mapping(cleaned_data[category], column_mappings[category][1], index_mapping_file)
+        print(f"✅ Saved index mapping: {index_mapping_file}")
 
 print("✅ Preprocessing complete. All similarity matrices saved!")
