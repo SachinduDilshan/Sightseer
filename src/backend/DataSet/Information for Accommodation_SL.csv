@@ -1,4 +1,4 @@
-Type,Name,Address,Rooms,Grade,District,AGA Division,PS/MC/UC,Logitiute,Latitude
+Hotel_Description,Hotel_Name,Address,Rooms,Grade,District,AGA Division,PS/MC/UC,Logitiute,Latitude
 Boutique Hotels,THE THEVA RESIDENCY,"11/B5/10-1 06TH LANE, HANTANA,KANDY",10,,Kandy,Kandy Divisional Secretariat,Kandy,80.635411,7.276036
 Boutique Hotels,HIGHLAND VILLA,"351, ABIMANGAMA ROAD, KUMBALGAMA, WELIGAMA",10,,Matara,Weligama Divisional Secretariat,Weligama Pradeshiya Sabha,80.409972,5.960334
 Boutique Hotels,ULAGALLA WALAWWA RESORT,"THIRAPPANE, ANURADHAPURA",21,,Anuradhapura,Anuradhapura East,Anuradhapura,80.545063,8.205927
@@ -1523,7 +1523,7 @@ Home Stay Units,FRIENDLY FAMILY GUEST HOUSE,"NO.291/A,D.S.SENANAYAKE VIDIYA,KAND
 Home Stay Units,MUTHUGALA REST,"""MUTHUGALA REST"",NO.159,AMUNUKUMBURA,WATHURUGAMA",4,SUPERIOR,Gampaha,Gampaha,Gampaha Divisional Secretariat,NULL,NULL
 Home Stay Units,VILLA SETH,"""VILLA SETH"",NO.36/14,YASODARA WATTA,HIRIMBURA CROSS ROAD,GALLE",4,DELUXE,Galle,Galle,Gagawata,NULL,NULL
 Home Stay Units,OCEAN INN,"""OCEAN INN"",NO.166/7,ROBOLGODA,BENTOTA",5,STANDARD,Galle,Bentota Pradeshiya Sabha,Benthota Divisional Secretariat,NULL,NULL
-Home Stay Units,9 A,"9A, UPPER DICKSON ROAD, GALLE",1,SUPERIOR,Galle,Galle,Galle Divisional Secretariat,NULL,NULL
+Home Stay Units,9:00 AM,"9A, UPPER DICKSON ROAD, GALLE",1,SUPERIOR,Galle,Galle,Galle Divisional Secretariat,NULL,NULL
 Home Stay Units,IRUWI,"220, GALLE ROAD, MORAGALLA, BERUWALA.",1,SUPERIOR,Kalutara,Beruwala Pradeshiya Sabha,Beruwala Divisional Secretariat,79.983049,6.451463
 Home Stay Units,RUWINI,"5/327 ,PORUTHOTA RD, PORUTHOTA, KOCHCHIKADE",1,STANDARD,Gampaha,Negombo,Negombo Divisional Secretariat,79.841011,7.228957
 Home Stay Units,SKYDALE,"352-G, DHARMARAJA ROAD, KANDY",4,DELUXE,Kandy,Kandy,Kandy Divisional Secretariat,80.6527456,7.2878343
