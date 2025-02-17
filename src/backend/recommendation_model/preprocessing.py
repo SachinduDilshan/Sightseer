@@ -36,7 +36,8 @@ def load_and_clean_data(data, text_column, group_by_column, is_dataframe=False):
 
     # Ensure required columns exist
     if text_column not in df.columns or group_by_column not in df.columns:
-        raise KeyError(f"Missing required columns '{text_column}' or '{group_by_column}' in dataset.")
+        print(f"❌ Error: Missing required columns '{text_column}' or '{group_by_column}' in dataset. Skipping...")
+        return None
 
     df.dropna(subset=[text_column], inplace=True)  # Drop rows with missing text
     df['clean_text'] = df[text_column].apply(clean_text)
@@ -94,7 +95,7 @@ if __name__ == "__main__":
         "hotels": r"D:/Year 3-Sem-2/SightseerProject/sightseer/src/backend/DataSet/Information for Accommodation_SL.csv",
         "restaurants": r"D:/Year 3-Sem-2/SightseerProject/sightseer/src/backend/DataSet/SL_Restaurants.csv",
         "travel_agents": r"D:/Year 3-Sem-2/SightseerProject/sightseer/src/backend/DataSet/SL_Travel_Agents.csv",
-        "tourist_shops": r"D:/Year 3-Sem-2/SightseerProject/sightseer/src/backend/DataSet/SL_Tourist Shops.csv"
+        "tourist_shops": r"D:/Year 3-Sem-2/SightseerProject/sightseer/src/backend/DataSet/SL_Tourist_Shops.csv"
     }
 
     column_mappings = {
@@ -132,7 +133,7 @@ if __name__ == "__main__":
                 print(f"⚠️ Warning: Missing required columns in travel agents dataset. Skipping...")
                 continue
 
-            df["combined_text"] = df["District"].astype(str)
+            df["combined_text"] = df["District"].astype(str) + " " + df["Agent_Name"].astype(str)  # FIXED
             cleaned_data[category] = load_and_clean_data(df, "combined_text", "Agent_Name", is_dataframe=True)
 
         elif category == "tourist_shops":
@@ -141,7 +142,7 @@ if __name__ == "__main__":
                 print(f"⚠️ Warning: Missing required columns in tourist shops dataset. Skipping...")
                 continue
 
-            df["combined_text"] = df["District"].astype(str)
+            df["combined_text"] = df["District"].astype(str) + " " + df["Shop_Name"].astype(str)
             cleaned_data[category] = load_and_clean_data(df, "combined_text", "Shop_Name", is_dataframe=True)
 
         else:
