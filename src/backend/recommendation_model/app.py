@@ -42,7 +42,7 @@ def recommend(category: str, index: int):
     Args:
         category (str): One of ['destinations', 'hotels', 'restaurants', 'travel_agents', 'tourist_shops']
         index (int): Index of the selected place.
-
+a
     Returns:
         List of recommended names.
     """

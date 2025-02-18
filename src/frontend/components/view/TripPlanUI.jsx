@@ -30,7 +30,7 @@ const TripPlanUI = () => {
             interests,
             budget,
             travel_style: travelStyle,
-            travel_agent: needAgent,
+            travel_agent: Boolean(needAgent),
         };
 
         try {
@@ -39,6 +39,7 @@ const TripPlanUI = () => {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(requestData),
             });
+            
 
             if (!response.ok) {
                 throw new Error("Failed to fetch recommendations");
@@ -46,7 +47,8 @@ const TripPlanUI = () => {
 
             const data = await response.json();
             setTripPlan(data.trip_plan);
-            setStep(4);
+            setStep(3);
+            console.log("API Response:", data);
         } catch (err) {
             setError(err.message);
         } finally {
