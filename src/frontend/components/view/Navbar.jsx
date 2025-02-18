@@ -13,7 +13,7 @@ const Navbar = () => {
   return (
     <div>
       {/* Navigation Bar */}
-      <nav className="px-4 py-3 flex items-center justify-between shadow-sm bg-white dark:bg-gray-800">
+      <nav className="px-4 py-3 flex items-center justify-between shadow-sm bg-white dark:bg-gray-800 font-medium">
         <div className="flex items-center gap-8">
           <div className="flex items-center gap-2">
             <img src={Logo} alt="Sightseer Logo" className="h-10 w-10" />
@@ -35,7 +35,7 @@ const Navbar = () => {
                 onClick={() => navigate(item.path)}
                 className={`px-4 py-2 rounded-md transition-all ${
                   location.pathname === item.path
-                    ? 'text-emerald-500' // Active button style
+                    ? 'text-emerald-500 ' // Active button style
                     : 'text-gray-700 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400'
                 }`}
               >

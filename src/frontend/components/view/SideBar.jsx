@@ -43,7 +43,7 @@ const SidebarMenu = () => {
   };
 
   return (
-    <div className="relative">
+    <div className="relative font-medium">
       <button onClick={toggleMenu} className={`p-2 rounded-lg ${darkMode ? 'hover:bg-gray-700' : 'hover:bg-gray-100'}`}>
         <Menu size={24} />
       </button>

@@ -18,7 +18,7 @@ const HomePage = () => {
   const { darkMode} = useContext(DarkModeContext);
 
   return (
-    <div className={`min-h-screen ${darkMode ? 'dark' : ''}`}>
+    <div className={`min-h-screen  ${darkMode ? 'dark' : ''}`}>
       <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-200">
         {/* Navigation */}
         <Navbar /> <br></br>
