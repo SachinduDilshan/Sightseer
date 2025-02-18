@@ -6,6 +6,7 @@ import HomePage from "./components/view/Home";
 import ContactPage from "./components/view/Contact";
 import DestinationPage from "./components/view/Destination";
 import HotelPage from "./components/view/Hotel";
+import TravelPlanner from "./components/view/TripPlanUI";
 //import DashboardPage from "./views/pages/DashboardPage"; // You'll need to create this
 //import ProtectedRoute from "./components/ProtectedRoute";
 import './styles/App.css';
@@ -24,6 +25,8 @@ function App() {
         <Route path="/destination" element={<DestinationPage/>} />
 
         <Route path="/hotel" element={<HotelPage/>} />
+
+        <Route path="/tripplan" element={<TravelPlanner />} />
 
 
         {/* Redirect root to auth page */}

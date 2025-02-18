@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import '../../styles/Home.css';
-//import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Ella from '../../../assets/ella.jpg';
 import Jaffna from '../../../assets/Jaffna.jpg';
 import Beach from '../../../assets/beach.jpg';
@@ -14,8 +14,8 @@ import { Search } from 'lucide-react';
 import Navbar from './Navbar.jsx';
 
 const HomePage = () => {
-  //const navigate = useNavigate();
-  const { darkMode, toggleDarkMode} = useContext(DarkModeContext);
+  const navigate = useNavigate();
+  const { darkMode} = useContext(DarkModeContext);
 
   return (
     <div className={`min-h-screen ${darkMode ? 'dark' : ''}`}>
@@ -45,7 +45,7 @@ const HomePage = () => {
               Discover the<br />Magic of Sri Lanka!
             </h1>
             <p className="text-emerald-400 mb-4">✨AI-Powered Travel Planning</p>
-            <button className="bg-emerald-500 text-white px-6 py-2 rounded-md flex items-center gap-2 hover:bg-emerald-600">
+            <button onClick={() =>  navigate('/tripplan')} className="bg-emerald-500 text-white px-6 py-2 rounded-md flex items-center gap-2 hover:bg-emerald-600">
               <span className="text-lg">📝 Plan My Trip</span>
             </button>
           </div>
