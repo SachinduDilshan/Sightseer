@@ -78,8 +78,8 @@ if __name__ == "__main__":
     }
 
     column_mappings = {
-        "destinations": ("Review", "Destination"),
-        "hotels": ("Hotel_Description", "Hotel_Name"),
+        "destinations": ("District", "Destination"),
+        "hotels": ("Hotel_Name", "Hotel_Type"),
         "restaurants": ("combined_text", "Restaurant_Name"),
         "travel_agents": ("combined_text", "Agent_Name"),
         "tourist_shops": ("combined_text", "Shop_Name")
