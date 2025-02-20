@@ -124,7 +124,14 @@ def get_recommendations(preferences: UserPreferences, top_n=5):
                 
                 # Get name from first column (assuming ID/name is first column)
                 recommended_indices = [i[0] for i in sim_scores]
-                recommendations[category] = df.iloc[recommended_indices, 0].tolist()
+                recommendations[category] = [
+     {
+        "name": df.iloc[i, 0],  # Assuming first column is name
+        "district": df.iloc[i]["District"] if "District" in df.columns else "Unknown"
+    }
+    for i in recommended_indices
+]
+
                 
                 print(f"Found {len(recommendations[category])} recommendations for {category}")
             else:
